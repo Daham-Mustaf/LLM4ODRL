@@ -1,0 +1,38 @@
+# Certainly! Below is the ODRL Rule in TTL format that grants permission to the M�nzkabinett Museum for an action with the purpose of `ArchiveEvent`.
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+
+# Define the Rule
+drk:DRK_0000001 a odrl:Set ;
+    odrl:uid "urn:uuid:DRK_0000001"^^xsd:anyURI ;
+    dc:description "Permission for M�nzkabinett Museum to archive events"^^xsd:string ;
+    dc:title "Archive Event Permission for M�nzkabinett Museum"^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:archive ;
+        odrl:target dbpedia:M�nzkabinett ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:uid "urn:uuid:constraint_0001"^^xsd:anyURI ;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:isA ;
+            odrl:rightOperand dbpedia:ArchiveEvent
+        ]
+    ] .
+# ```
+
+# Explanation:
+# - `drk:DRK_0000001` is the unique identifier for the rule, following the naming convention provided.
+# - The `odrl:Set` class is used as the container for the rule.
+# - A description and title are provided using `dcterms:description` and `dct:title`.
+# - The permission is defined using `odrl:permission`, which includes:
+#   - The action `odrl:archive`.
+#   - The target of the permission, which in this case is the M�nzkabinett Museum (represented as `dbpedia:M�nzkabinett`).
+#   - A constraint specifying the purpose (`odrl:purpose`) using `odrl:isA` operator, ensuring it is an instance of `ArchiveEvent` (`dbpedia:ArchiveEvent`).
+
+# This TTL format provides a well-structured ODRL Rule according to the guidelines and requirements specified.

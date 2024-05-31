@@ -1,0 +1,80 @@
+# Here is the revised ODRL policy expressed in Turtle (TTL) format for the Münzkabinett museum, which aligns with the validation report rules:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+# Define the Agreement
+drk:MuenzkabinettAgreement a odrl:Agreement, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/MuenzkabinettAgreement> ;
+    odrl:profile <http://w3id.org/drk/MuenzkabinettProfile> ;
+    dc:creator "Münzkabinett Museum"^^xsd:string ;
+    dc:description "Agreement for accessing the digital repository of ArchiveEvents at the Münzkabinett museum"^^xsd:string ;
+    dc:title "Münzkabinett Digital Archive Access Policy"^^xsd:string ;
+    dc:issued "2023-10-06T00:00:00Z"^^xsd:dateTime ;
+    odrl:permission drk:ViewDownloadPermission ;
+    odrl:assigner drk:MuenzkabinettMuseum ;
+    odrl:assignee drk:AuthenticatedUser .
+
+# Define the Assigner (Münzkabinett Museum)
+drk:MuenzkabinettMuseum a odrl:Party, vcard:Organization ;
+    odrl:uid <http://w3id.org/drk/MuenzkabinettMuseum> ;
+    dc:description "The Münzkabinett museum, owner of the digital archive"^^xsd:string .
+
+# Define the Assignee (Authenticated User)
+drk:AuthenticatedUser a odrl:Party, foaf:Agent ;
+    odrl:uid <http://w3id.org/drk/AuthenticatedUser> ;
+    dc:description "Authenticated users who have registered with a valid ORCID or email address"^^xsd:string .
+
+# Define the Permission to View and Download ArchiveEvents
+drk:ViewDownloadPermission a odrl:Permission ;
+    odrl:target drk:ArchiveEvent ;
+    odrl:action [ 
+        a odrl:Action ; 
+        odrl:rdf:value odrl:view 
+    ], [
+        a odrl:Action ; 
+        odrl:rdf:value odrl:download 
+    ] ;
+    odrl:constraint [ 
+        a odrl:Constraint ;
+        odrl:uid <http://w3id.org/drk/authenticated-constraint> ;
+        odrl:leftOperand odrl:authenticated ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand "true"^^xsd:boolean 
+    ] .
+
+# Define the ArchiveEvent Asset
+drk:ArchiveEvent a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/ArchiveEvent> ;
+    dc:description "Digital ArchiveEvent from the Münzkabinett museum"^^xsd:string .
+
+# Constraint for Authentication
+drk:authenticatedConstraint a odrl:Constraint ;
+    odrl:uid <http://w3id.org/drk/authenticatedConstraint> ;
+    dc:title "User Authentication"^^xsd:string ;
+    odrl:leftOperand odrl:authenticated ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand "true"^^xsd:boolean .
+
+# Define the Authentication Action
+drk:AuthenticateAction a odrl:Action ;
+    odrl:rdf:value odrl:authenticate ;
+    odrl:refinement [
+        a odrl:Constraint ;
+        odrl:leftOperand odrl:uid ;
+        odrl:operator odrl:isAnyOf ;
+        odrl:rightOperand "ORCID"^^xsd:string, "email"^^xsd:string
+    ] .
+# ```
+
+# This revised policy includes:
+# - `odrl:profile` property to identify the policy.
+# - `dc:issued` property with the current date and time.
+# - Properly structured `odrl:constraint` blocks.
+# - Correct use of standardized `odrl:action` values.
+# - Ensuring all mandatory meta-information properties and parties are defined as required.

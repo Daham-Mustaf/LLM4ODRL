@@ -1,0 +1,52 @@
+# Based on the provided guidelines and details, here is a comprehensive ODRL policy for the DE_Staatstheater_Augsburg's collaboration with a local university for an educational program on theater history and cultural heritage. The policy grants access to the 'HistoricalArchives' asset for free scientific research:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+# Define the DE_Staatstheater_Augsburg as a Party
+drk:DE_Staatstheater_Augsburg a odrl:Party, vcard:Organization ;
+    odrl:uid <http://w3id.org/drk/DE_Staatstheater_Augsburg> ;
+    dc:description "State Theater Augsburg, Germany"^^xsd:string .
+
+# Define the local university as a Party
+drk:LocalUniversity a odrl:Party, vcard:Organization ;
+    odrl:uid <http://w3id.org/drk/LocalUniversity> ;
+    dc:description "Local University collaborating for educational purposes"^^xsd:string .
+
+# Define the asset 'HistoricalArchives'
+drk:HistoricalArchives a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/HistoricalArchives> ;
+    dc:description "Digitized historical data on theater history and cultural heritage"^^xsd:string .
+
+# Define the Agreement
+drk:EducationalProgramAgreement a odrl:Agreement, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/EducationalProgramAgreement> ;
+    dc:creator "DE_Staatstheater_Augsburg"^^xsd:string ;
+    dc:description "Agreement for providing access to 'HistoricalArchives' for free scientific research"^^xsd:string ;
+    dc:title "Educational Program on Theater History and Cultural Heritage"^^xsd:string ;
+    odrl:assigner drk:DE_Staatstheater_Augsburg ;
+    odrl:assignee drk:LocalUniversity ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target drk:HistoricalArchives ;
+        odrl:action odrl:use ;
+        odrl:refinement [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:isA ;
+            odrl:rightOperand "ScientificResearch"^^xsd:string
+        ]
+    ] .
+# ```
+
+# ### Explanation:
+# - **Parties**: Defined DE_Staatstheater_Augsburg and the local university as parties using the `odrl:Party` and `vcard:Organization` classes.
+# - **Asset**: Defined `HistoricalArchives` as an asset with a unique identifier and description.
+# - **Agreement**: Created an agreement titled "Educational Program on Theater History and Cultural Heritage" with metadata using Dublin Core terms. The agreement includes assigner (DE_Staatstheater_Augsburg) and assignee (LocalUniversity).
+# - **Permission**: Granted permission to use `HistoricalArchives` for the purpose of "ScientificResearch".
+
+# This Turtle (TTL) file should be a comprehensive representation of the ODRL policy for the given scenario.

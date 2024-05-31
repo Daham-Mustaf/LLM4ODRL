@@ -1,0 +1,177 @@
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix odrl: <https://www.w3.org/ns/odrl/2/> .
+@prefix drkodrl: <https://w3id.org/drkodrl> .
+
+# C1- odrl:uid criteria: Assertion:
+# Agreement Policy
+odrl:C1_2_7_5
+    a sh:NodeShape ;
+    sh:targetClass odrl:Agreement, odrl:Policy ;  # Include both Offer and Policy
+    sh:property [
+        sh:path rdf:type ;  # Use rdf:type to specify the type
+        sh:in (odrl:Agreement odrl:Policy) ;  # Allow only odrl:Agreement or odrl:Policy as types
+    ] ;
+    sh:property [
+        sh:path odrl:uid ;
+        sh:datatype xsd:anyURI ;
+        sh:minCount 1 ;
+         sh:message "The 'odrl:uid' property must have exactly one value of datatype xsd:anyURI." ;
+        # odrl:uid "urn:uuid:LowResPolicy"^^xsd:anyURI ;
+    ] ;
+# C2- Explicit data type specification criteria
+# C-7 Policy Identification and Meta-Information Criteria:}
+# dc:description, dc:creator, dc:issued and  dc:title.
+   sh:property [
+        sh:path dc:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        # sh:nodeKind sh:Literal ;
+        # sh:in ("Print Agreement description") ;  # Specific value constraint
+    ]; 
+    sh:property [
+        sh:path dc:creator ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "The 'dc:creator' property must have exactly one value of datatype xsd:dateTime." ;
+    ] ;
+    sh:property [
+    sh:path dc:issued ;
+    sh:datatype xsd:dateTime ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "The 'dc:issued' property must have exactly one value of datatype xsd:dateTime." ;
+    ] ;
+    sh:property [
+        sh:path dc:title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "The 'dc:title' property must have exactly one value of datatype xsd:string." ;
+    ] ;
+    sh:property [
+        sh:path odrl:profile ;
+        # sh:nodeKind sh:IRI ;
+        sh:datatype xsd:anyURI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "The 'odrl:profile' property must have exactly one value of datatype xsd:anyURI." ;
+    ] ;
+    # C5- ODRL-Rule Constraint:
+     sh:or (
+        [
+            sh:property [
+                sh:path odrl:permission ;
+                sh:severity sh:Violation ;
+                sh:minCount 1 ;
+                sh:class odrl:Permission;
+                sh:message "At least one 'odrl:permission' is required for this Policy." ;
+            ] ;
+        ]
+        [
+            sh:property [
+                sh:path odrl:prohibition ;
+                sh:severity sh:Violation ;
+                sh:minCount 1 ;
+                sh:class odrl:Prohibition;
+                sh:message "At least one 'odrl:prohibition' is required for this Policy." ;
+            ] ;
+        ]
+        [
+            sh:property [
+                sh:path odrl:obligation ;
+                sh:severity sh:Violation ;
+                sh:minCount 1 ;
+                sh:class odrl:Obligation;
+                sh:message "At least one 'odrl:obligation' is required for this Policy." ;
+            ] ;
+        ]
+    ); 
+    sh:message "At least one of 'odrl:permission', 'odrl:prohibition', or 'odrl:obligation' is required for this Policy." .
+
+
+# C3- Explicit Type Specification for Party Instances criteria:
+
+# C4- Explicit Type Specification for Asset and AssetCollection Instances criteria
+# C6- ODRL-Constraint criteria Specification:
+drkodrl:C6
+    a sh:NodeShape ;
+    sh:targetClass odrl:Constraint ;
+    sh:property [
+        sh:path odrl:uid ;
+        sh:datatype xsd:anyURI ;
+        # sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:message "The Constraint's 'odrl:uid' property is missing or not an IRI." ;
+    ] ;
+    sh:property [
+        sh:path odrl:leftOperand ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:message "The Constraint must have at least one 'odrl:leftOperand' of type 'odrl:Operand'." ;
+    ] ;
+    sh:property [
+        sh:path odrl:operator ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:message "The Constraint must have at least one 'odrl:operator' of type 'odrl:Operator'." ;
+    ] ;
+    sh:property [
+        sh:path odrl:rightOperand ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:message "The Constraint must have at least one 'odrl:rightOperand' of type 'rdfs:Literal'." ;
+    ] ;
+    sh:property [
+        sh:path odrl:unit ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 0 ;  # Adjust as needed
+        sh:message "The Constraint may have 'odrl:unit' of type 'odrl:Unit'." ;
+    ] ;
+    sh:property [
+        sh:path odrl:dataType ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 0 ;  # Adjust as needed
+        sh:message "The Constraint may have 'odrl:dataType' of type 'rdfs:Datatype'." ;
+    ] .
+# C-8 Semantic Equivalence Ontology Constraint:
+
+# C-9
+
+
+
+# Shape for the 'odrl:Permission' node
+drkodrl:PermissionShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Permission ;
+    sh:property [
+        sh:path odrl:assigner ;
+        sh:node drkodrl:PartyShape ; # Reference to the shape for 'odrl:Party'
+        sh:minCount 1 ;
+    ] .
+
+
+drkodrl:PartyShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Party ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:in (odrl:Party) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path odrl:uid ;
+        sh:datatype xsd:anyURI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path dc:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+

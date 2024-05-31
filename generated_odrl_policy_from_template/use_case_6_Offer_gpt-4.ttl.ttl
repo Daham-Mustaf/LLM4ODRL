@@ -1,0 +1,56 @@
+# Below is a comprehensive ODRL policy for the Kupferstich-Kabinett museum's digital images of the artwork 'Bauernhäuser am Berghang' by Caspar David Friedrich.
+
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk> .
+
+# Define the ODRL Offer Policy
+drk:ArtworkImagesOffer a odrl:Offer, odrl:Policy ;
+
+    # Metadata using Dublin Core terms
+    dc:creator "Kupferstich-Kabinett Museum"^^xsd:string ;
+    dc:description "Offer for the digital images of the artwork 'Bauernhäuser am Berghang' by Caspar David Friedrich."^^xsd:string ;
+    dc:title "Digital Images Offer"^^xsd:string  ;
+    odrl:profile <UI:ArtworkImagesOffer>;
+
+    odrl:permission [
+        a odrl:Permission;
+        odrl:target drk:SmallAndMediumImages;
+        odrl:action odrl:read;
+        odrl:assigner drk:KupferstichKabinettMuseum;
+    ];
+
+    odrl:permission [
+        a odrl:Permission;
+        odrl:target drk:HighResolutionImage;
+        odrl:action odrl:read;
+        odrl:assigner drk:KupferstichKabinettMuseum;
+        odrl:duty [
+            a odrl:Duty;
+            odrl:action odrl:obtainConsent;
+            odrl:assignee drk:KupferstichKabinettMuseumMembers;
+        ];
+    ].
+
+# Define the assets
+drk:SmallAndMediumImages a odrl:Asset ;
+    odrl:uid <UI:SmallAndMediumImages> ;
+    dc:description "Small and medium images of the artwork 'Bauernhäuser am Berghang' by Caspar David Friedrich."^^xsd:string .
+
+drk:HighResolutionImage a odrl:Asset ;
+    odrl:uid <UI:HighResolutionImage> ;
+    dc:description "High-resolution image of the artwork 'Bauernhäuser am Berghang' by Caspar David Friedrich."^^xsd:string .
+
+# Define the parties
+drk:KupferstichKabinettMuseum a odrl:Party ;
+    odrl:uid <UI:KupferstichKabinettMuseum> ;
+    dc:description "The Kupferstich-Kabinett museum."^^xsd:string .
+
+drk:KupferstichKabinettMuseumMembers a odrl:Party ;
+    odrl:uid <UI:KupferstichKabinettMuseumMembers> ;
+    dc:description "Members of the Kupferstich-Kabinett museum."^^xsd:string .
+# ```
+
+# This policy defines two types of digital images of the artwork: small and medium images that are freely accessible to everyone, and a high-resolution image that is only accessible to members of the Kupferstich-Kabinett museum. It also defines two parties: the Kupferstich-Kabinett museum itself and its members. The permissions granted on the digital images and the duties required to obtain these permissions are specified in the policy.

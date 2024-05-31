@@ -1,0 +1,103 @@
+# Sure, here's a comprehensive ODRL Policy for the Kupferstich-Kabinett museum, detailing the permissions for accessing digital images of the artwork 'Bauernhäuser am Berghang' by Caspar David Friedrich.
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Define the museum as an organization
+drk:KupferstichKabinett a odrl:Party, foaf:Organization ;
+    odrl:uid <http://w3id.org/drk/KupferstichKabinett> ;
+    dc:description "The Kupferstich-Kabinett museum"^^xsd:string .
+
+# Define the artwork as an asset
+drk:ArtworkBauernhaeuser a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/ArtworkBauernhaeuser> ;
+    dc:title "Bauernhäuser am Berghang by Caspar David Friedrich"^^xsd:string .
+
+# Define the policy for small and medium images
+drk:SmallMediumImagesPolicy a odrl:Offer, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/SmallMediumImagesPolicy> ;
+    dc:creator "Kupferstich-Kabinett"^^xsd:string ;
+    dc:description "Policy for accessing small and medium images"^^xsd:string ;
+    dc:title "Small and Medium Images Access Policy"^^xsd:string ;
+    odrl:profile <http://w3id.org/drk/Profile> ;
+    odrl:hasPolicy drk:SmallMediumImagesPolicy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:distribute ;
+        odrl:target drk:ArtworkBauernhaeuser ;
+        odrl:assignee [
+            a odrl:Party, foaf:Agent ;
+            odrl:uid <http://w3id.org/drk/Everyone> ;
+            dc:description "All users"^^xsd:string
+        ] ;
+    ] .
+
+# Define the policy for original high-resolution image
+drk:HighResImagePolicy a odrl:Offer, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/HighResImagePolicy> ;
+    dc:creator "Kupferstich-Kabinett"^^xsd:string ;
+    dc:description "Policy for accessing the original high-resolution image"^^xsd:string ;
+    dc:title "High-Resolution Image Access Policy"^^xsd:string ;
+    odrl:profile <http://w3id.org/drk/Profile> ;
+    odrl:hasPolicy drk:HighResImagePolicy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:distribute ;
+        odrl:target drk:ArtworkBauernhaeuser ;
+        odrl:assignee [
+            a odrl:Party, foaf:Agent ;
+            odrl:uid <http://w3id.org/drk/Members> ;
+            dc:description "Members of the Kupferstich-Kabinett museum"^^xsd:string
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:memberOf ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand <http://w3id.org/drk/KupferstichKabinettMembers>
+        ]
+    ] .
+
+# Define the high-resolution image as an asset
+drk:HighResImage a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/HighResImage> ;
+    dc:title "High-Resolution Image of Bauernhäuser am Berghang"^^xsd:string ;
+    odrl:partOf drk:ArtworkBauernhaeuser .
+
+# Define the members of Kupferstich-Kabinett
+drk:KupferstichKabinettMembers a odrl:PartyCollection ;
+    odrl:uid <http://w3id.org/drk/KupferstichKabinettMembers> ;
+    dc:description "Members of the Kupferstich-Kabinett museum"^^xsd:string ;
+    odrl:source drk:KupferstichKabinett .
+
+# Optional: Define a refinement for the high-resolution image permission
+drk:HighResImagePermission a odrl:Permission ;
+    odrl:action odrl:distribute ;
+    odrl:target drk:HighResImage ;
+    odrl:assignee [
+        a odrl:Party, foaf:Agent ;
+        odrl:uid <http://w3id.org/drk/Members> ;
+        dc:description "Members of the Kupferstich-Kabinett museum"^^xsd:string
+    ] ;
+    odrl:constraint [
+        a odrl:Constraint ;
+        odrl:leftOperand odrl:memberOf ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand <http://w3id.org/drk/KupferstichKabinettMembers>
+    ] .
+
+# Bind the high-resolution image permission to the high-resolution image policy
+drk:HighResImagePolicy odrl:permission drk:HighResImagePermission .
+# ```
+
+# This Turtle file includes:
+# 1. Definitions for the museum as an organization.
+# 2. Definitions for the artwork as an asset.
+# 3. Policies for accessing small, medium, and high-resolution images.
+# 4. Permissions for distributing these images.
+# 5. Constraints to ensure that only members of the museum can access the high-resolution images.
+
+# Make sure to adapt the URLs and specific details to match the actual identifiers and descriptions used within your system.

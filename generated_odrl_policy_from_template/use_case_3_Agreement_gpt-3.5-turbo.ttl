@@ -1,0 +1,33 @@
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+# @prefix drk: <http://w3id.org/drk> .
+# @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# @prefix dc: <http://purl.org/dc/terms/> .
+
+# # Define the ODRL Offer Policy
+# drk:DE_Staatstheater_Augsburg_EducationalProgram a odrl:Offer, odrl:Policy ;
+#     odrl:profile <UI:Profile_UID_here> ;
+#     odrl:uid <UI:DE_Staatstheater_Augsburg_EducationalProgram> ;
+#     dc:title "DE_Staatstheater_Augsburg_EducationalProgram"^^xsd:string ;
+#     dc:description "The DE_Staatstheater_Augsburg collaborates with a local university for an educational program on theater history and cultural heritage. They offer access to the 'HistoricalArchives' Asset, containing digitized historical data. Access is free for scientific research, enabling scholars to explore the dataset without fees."^^xsd:string ;
+#     odrl:hasPolicy drk:DE_Staatstheater_Augsburg_EducationalProgram .
+
+# # Metadata using Dublin Core terms
+# dc:creator "Daham Musta"^^xsd:string ;
+# dc:description "The DE_Staatstheater_Augsburg collaborates with a local university for an educational program on theater history and cultural heritage. They offer access to the 'HistoricalArchives' Asset, containing digitized historical data. Access is free for scientific research, enabling scholars to explore the dataset without fees."^^xsd:string ;
+# dc:title "DE_Staatstheater_Augsburg_EducationalProgram"^^xsd:string ;
+# odrl:profile <UI:Profile_UID_here> ;
+# odrl:hasPolicy drk:DE_Staatstheater_Augsburg_EducationalProgram .
+
+# # Offer Permissions
+# odrl:permission [
+#     a odrl:Permission ;
+#     odrl:action odrl:use ;
+#     odrl:target drk:HistoricalArchives ;
+#     odrl:assigner drk:DE_Staatstheater_Augsburg ;
+#     odrl:constraint [
+#         a odrl:Constraint ;
+#         odrl:leftOperand odrl:access ;
+#         odrl:operator odrl:eq ;
+#         odrl:rightOperand "scientific research"^^xsd:string ;
+#     ] ;
+# ] .

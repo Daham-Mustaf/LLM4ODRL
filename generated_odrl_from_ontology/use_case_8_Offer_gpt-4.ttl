@@ -1,0 +1,49 @@
+# Below is an example of a well-formatted ODRL policy in Turtle format (TTL):
+
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+<http://example.com/policy/1> a odrl:Set;
+    dct:title "Kupferstich-Kabinett Museum Image Access Policy" ;
+    odrl:permission [
+        a odrl:Permission;
+        odrl:target <http://example.com/resource/artwork-images>;
+        odrl:action odrl:display;
+        odrl:constraint [
+            a odrl:Constraint;
+            odrl:operator odrl:lteq;
+            odrl:rightOperand 300;
+            odrl:unit <http://example.com/unit/dpi>;
+        ];
+        odrl:duty [
+            a odrl:Duty;
+            odrl:action odrl:pay;
+            odrl:operator odrl:eq;
+            odrl:rightOperand 0;
+        ]
+    ];
+    odrl:permission [
+        a odrl:Permission;
+        odrl:target <http://example.com/resource/artwork-images>;
+        odrl:action odrl:display;
+        odrl:constraint [
+            a odrl:Constraint;
+            odrl:operator odrl:gt;
+            odrl:rightOperand 300;
+            odrl:unit <http://example.com/unit/dpi>;
+        ];
+        odrl:duty [
+            a odrl:Duty;
+            odrl:action odrl:pay;
+            odrl:operator odrl:neq;
+            odrl:rightOperand 0;
+        ]
+    ] .
+# ```
+
+# In this policy, we have two permissions:
+
+# 1. For images with resolution 300 dpi or less (odrl:operator odrl:lteq; odrl:rightOperand 300) are freely accessible to public (odrl:action odrl:display) with no fee required (odrl:action odrl:pay; odrl:rightOperand 0).
+
+# 2. For images with resolution more than 300 dpi (odrl:operator odrl:gt; odrl:rightOperand 300) are accessible to public (odrl:action odrl:display) with fee required (odrl:action odrl:pay; odrl:rightOperand not equal to 0).

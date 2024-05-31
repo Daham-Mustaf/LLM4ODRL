@@ -1,0 +1,44 @@
+# Based on the provided ODRL classes and instructions, the ODRL policy for the Skulpturensammlung museum to provide public access to digital reproductions of the artwork 'Gro�e D�ne' by C. D. Friedrich could be written as follows:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix cc: <http://web.resource.org/cc/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+drk:PublicAccessToArtwork a odrl:Agreement, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/PublicAccessToArtwork> ;
+    dc:title "Public Access to 'Gro�e D�ne' Artwork"^^xsd:string ;
+    dc:creator "Skulpturensammlung museum"^^xsd:string ;
+    dc:description "This policy allows public to view and download digital images of the artwork 'Gro�e D�ne' by C. D. Friedrich for sharing and non-commercial use."^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target drk:ArtworkGro�eD�ne ;
+        odrl:assigner drk:SkulpturensammlungMuseum ;
+        odrl:assignee drk:M�nzkabinettMuseum ;
+        odrl:action odrl:view, odrl:download, cc:ShareAlike ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:use ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "Non-commercial"^^xsd:string ;
+        ]
+    ] .
+
+drk:ArtworkGro�eD�ne a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/ArtworkGro�eD�ne> ;
+    dc:title "'Gro�e D�ne' by C. D. Friedrich"^^xsd:string .
+
+drk:SkulpturensammlungMuseum a odrl:Party, foaf:Organization ;
+    odrl:uid <http://w3id.org/drk/SkulpturensammlungMuseum> ;
+    dc:description "The Skulpturensammlung museum"^^xsd:string .
+
+drk:M�nzkabinettMuseum a odrl:Party, foaf:Organization ;
+    odrl:uid <http://w3id.org/drk/M�nzkabinettMuseum> ;
+    dc:description "The M�nzkabinett museum"^^xsd:string .
+# ```
+
+# This policy states that the Skulpturensammlung museum (the assigner) grants the M�nzkabinett museum (the assignee) the permission to view and download digital images of the artwork 'Gro�e D�ne' by C. D. Friedrich (the target) for sharing and non-commercial use (the constraint).

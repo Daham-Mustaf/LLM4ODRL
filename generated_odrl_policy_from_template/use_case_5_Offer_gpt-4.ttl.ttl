@@ -1,0 +1,46 @@
+# Based on the given ODRL classes and instructions, below is a comprehensive ODRL policy for the Kupferstich-Kabinett's 'Vorlagenzeichner' artwork:
+
+# ```TTL
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix drk: <http://w3id.org/drk/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+drk:VorlagenzeichnerAccessOffer a odrl:Offer, odrl:Policy ;  
+    odrl:uid <UI:VorlagenzeichnerAccessOffer>; 
+    dc:title "Access Permission for Vorlagenzeichner Artwork"^^xsd:string ; 
+    dc:creator "Kupferstich-Kabinett"^^xsd:string ;  
+    dc:description "This offer permits access to the Vorlagenzeichner artwork for one-month duration."^^xsd:string ;  
+    odrl:permission [  
+        a odrl:Permission ;  
+        odrl:action odrl:display ;  
+        odrl:target drk:VorlagenzeichnerArtwork ;  
+        odrl:assigner drk:KupferstichKabinett ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:operator odrl:eq ;
+            odrl:leftOperand odrl:systemDevice ;
+            odrl:rightOperand "loggingServer"^^xsd:string ;
+        ]
+    ] ;
+    odrl:hasPolicy drk:VorlagenzeichnerAccessOffer .
+
+
+drk:KupferstichKabinett a odrl:Party, foaf:Organization ;
+    odrl:uid <UI:KupferstichKabinett> ;
+    dc:description "Kupferstich-Kabinett, the assigner of the policy."^^xsd:string .
+
+drk:VorlagenzeichnerArtwork a odrl:Asset ;
+    odrl:uid <UI:VorlagenzeichnerArtwork> ;
+    dc:description "Vorlagenzeichner artwork, the asset of the policy."^^xsd:string .
+# ```
+
+# Explanation:
+
+# 1. `drk:VorlagenzeichnerAccessOffer` is an instance of `odrl:Offer` and `odrl:Policy` classes, which gives permission to access the 'Vorlagenzeichner' artwork.
+# 2. `odrl:permission` defines the permission to display the artwork.
+# 3. Constraint is defined under `odrl:permission` to restrict the type of device used to access the artwork (only `loggingServer` is allowed).
+# 4. `drk:KupferstichKabinett` is an instance of `odrl:Party` and `foaf:Organization` classes, which represents the Kupferstich-Kabinett, the assigner of the policy.
+# 5. `drk:VorlagenzeichnerArtwork` is an instance of `odrl:Asset`, the 'Vorlagenzeichner' artwork.

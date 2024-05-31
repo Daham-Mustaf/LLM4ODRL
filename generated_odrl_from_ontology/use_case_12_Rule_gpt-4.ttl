@@ -1,0 +1,29 @@
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix ex: <http://example.com/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:MunzkabinettMuseumPolicy a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target ex:ArchiveEvent ;
+        odrl:action odrl:use ;
+        odrl:purpose ex:ArchiveEvent ;
+    ] ;
+    odrl:assigner ex:MunzkabinettMuseum ;
+    odrl:assignee ex:Public ;
+    odrl:profile <http://profiles.odrl.net/2/CC/4.0/> ;
+    odrl:conflict odrl:perm ;
+    odrl:inheritAllowed true ;
+    odrl:invalid "2018-12-31T23:59:59Z"^^xsd:dateTime ;
+    odrl:valid "2018-01-01T00:00:00Z"^^xsd:dateTime .
+# ```
+# The above example of a policy in Turtle (ttl) format shows the Münzkabinett Museum (ex:MunzkabinettMuseum) granting a permission (odrl:permission) to the public (ex:Public) to use an ArchiveEvent (ex:ArchiveEvent) for archival purposes (odrl:purpose ex:ArchiveEvent).
+
+# The policy is assigned by the Münzkabinett Museum (odrl:assigner ex:MunzkabinettMuseum) and is assigned to the public (odrl:assignee ex:Public).
+
+# The profile used is the Creative Commons 4.0 (odrl:profile <http://profiles.odrl.net/2/CC/4.0/>).
+
+# In case of conflict, the permission wins (odrl:conflict odrl:perm).
+
+# The policy allows inheritance (odrl:inheritAllowed true) and is valid from 1st January 2018 until 31st December 2018 (odrl:valid "2018-01-01T00:00:00Z"^^xsd:dateTime ; odrl:invalid "2018-12-31T23:59:59Z"^^xsd:dateTime).

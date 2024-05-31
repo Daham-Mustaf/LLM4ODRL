@@ -1,0 +1,78 @@
+# Below is an ODRL policy expressed in Turtle (TTL) format for the M�nzkabinett museum to provide access to their digital repository of ArchiveEvents. This policy ensures that only authenticated users can view and download the ArchiveEvents after registering with a valid user ID, which can be either an ORCID or an email address.
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+# Define the Agreement
+drk:MuenzkabinettAgreement a odrl:Agreement, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/MuenzkabinettAgreement> ;
+    dc:creator "M�nzkabinett Museum"^^xsd:string ;
+    dc:description "Agreement for accessing the digital repository of ArchiveEvents at the M�nzkabinett museum"^^xsd:string ;
+    dc:title "M�nzkabinett Digital Archive Access Policy"^^xsd:string ;
+    odrl:permission drk:ViewDownloadPermission ;
+    odrl:assigner drk:MuenzkabinettMuseum ;
+    odrl:assignee drk:AuthenticatedUser .
+
+# Define the Assigner (M�nzkabinett Museum)
+drk:MuenzkabinettMuseum a odrl:Party, vcard:Organization ;
+    odrl:uid <http://w3id.org/drk/MuenzkabinettMuseum> ;
+    dc:description "The M�nzkabinett museum, owner of the digital archive"^^xsd:string .
+
+# Define the Assignee (Authenticated User)
+drk:AuthenticatedUser a odrl:Party, foaf:Agent ;
+    odrl:uid <http://w3id.org/drk/AuthenticatedUser> ;
+    dc:description "Authenticated users who have registered with a valid ORCID or email address"^^xsd:string .
+
+# Define the Permission to View and Download ArchiveEvents
+drk:ViewDownloadPermission a odrl:Permission ;
+    odrl:target drk:ArchiveEvent ;
+    odrl:action [ 
+        a odrl:Action ; 
+        odrl:rdf:value odrl:view 
+    ], [
+        a odrl:Action ; 
+        odrl:rdf:value odrl:download 
+    ] ;
+    odrl:constraint [ 
+        a odrl:Constraint ;
+        odrl:leftOperand odrl:authenticated ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand "true"^^xsd:boolean 
+    ] .
+
+# Define the ArchiveEvent Asset
+drk:ArchiveEvent a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/ArchiveEvent> ;
+    dc:description "Digital ArchiveEvent from the M�nzkabinett museum"^^xsd:string .
+
+# Constraint for Authentication
+drk:authenticated a odrl:Constraint ;
+    odrl:uid <http://w3id.org/drk/authenticated> ;
+    dc:title "User Authentication"^^xsd:string ;
+    odrl:leftOperand odrl:authenticated ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand "true"^^xsd:boolean .
+
+# Define the Authentication Action
+drk:AuthenticateAction a odrl:Action ;
+    odrl:rdf:value odrl:authenticate ;
+    odrl:refinement [
+        a odrl:Constraint ;
+        odrl:leftOperand odrl:uid ;
+        odrl:operator odrl:isAnyOf ;
+        odrl:rightOperand ["ORCID", "email"]
+    ] .
+
+# ```
+
+# This policy includes the following components:
+# - An `Agreement` specifying the terms of access.
+# - A `Permission` for authenticated users to view and download the ArchiveEvents.
+# - Definitions for the `assigner` (M�nzkabinett Museum) and the `assignee` (Authenticated User).
+# - An `Asset` representing the digital ArchiveEvent.
+# - Constraints ensuring only authenticated users can access the repository using either an ORCID or an email address.

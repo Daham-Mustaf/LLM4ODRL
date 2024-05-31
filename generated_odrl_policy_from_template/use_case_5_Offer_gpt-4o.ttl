@@ -1,0 +1,74 @@
+# Based on the provided guidelines and requirements, here is a comprehensive ODRL Policy for the Kupferstich-Kabinett's 'Vorlagenzeichner' artwork, formatted in Turtle (TTL):
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+
+# Define the ODRL Offer Policy
+drk:VorlagenzeichnerOffer a odrl:Offer, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/VorlagenzeichnerOffer> ;
+    dc:creator "Kupferstich-Kabinett"^^xsd:string ;
+    dc:description "Offer for accessing the 'Vorlagenzeichner' artwork for a one-month duration with device restrictions."^^xsd:string ;
+    dc:title "Access to 'Vorlagenzeichner' Artwork"^^xsd:string ;
+    odrl:profile <http://w3id.org/drk/ODRL_Profile> ;
+    odrl:hasPolicy drk:VorlagenzeichnerOfferPolicy ;
+    odrl:assigner drk:KupferstichKabinett .
+
+# Define the Assigner Party
+drk:KupferstichKabinett a odrl:Party, foaf:Organization ;
+    odrl:uid <http://w3id.org/drk/KupferstichKabinett> ;
+    dc:description "Kupferstich-Kabinett, the owner of the 'Vorlagenzeichner' artwork."^^xsd:string .
+
+# Define the Permission for the Offer
+drk:VorlagenzeichnerOfferPolicy odrl:permission [
+    a odrl:Permission ;
+    odrl:target drk:VorlagenzeichnerArtwork ;
+    odrl:action [
+        a odrl:Action ;
+        odrl:rdf:value odrl:use ;
+        odrl:refinement [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:systemDevice ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "loggingServer"^^xsd:string ;
+        ] ;
+    ] ;
+    odrl:constraint [
+        a odrl:Constraint ;
+        odrl:leftOperand odrl:dateTime ;
+        odrl:operator odrl:lteq ;
+        odrl:rightOperand "P1M"^^xsd:duration ;
+    ] ;
+] .
+
+# Define the Asset
+drk:VorlagenzeichnerArtwork a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/VorlagenzeichnerArtwork> ;
+    dc:title "Vorlagenzeichner"^^xsd:string ;
+    dc:description "An artwork in the Kupferstich-Kabinett collection."^^xsd:string .
+
+# ```
+
+# ### Explanation:
+# 1. **Policy Definition (`drk:VorlagenzeichnerOffer`):**
+#    - Includes metadata such as creator, description, title, and profile.
+#    - Sets the `uid` to uniquely identify the offer.
+#    - Links to a policy (`drk:VorlagenzeichnerOfferPolicy`).
+
+# 2. **Assigner Definition (`drk:KupferstichKabinett`):**
+#    - Describes the assigner, which is Kupferstich-Kabinett, as an organization.
+
+# 3. **Permission Definition:**
+#    - Specifies the permission to use the artwork (`drk:VorlagenzeichnerArtwork`).
+#    - Includes a constraint on the type of device (`loggingServer`) using `odrl:systemDevice` as `leftOperand`.
+#    - Sets a temporal constraint for access duration (`P1M`).
+
+# 4. **Asset Definition (`drk:VorlagenzeichnerArtwork`):**
+#    - Describes the artwork with metadata such as title and description.
+#    - Sets the `uid` to uniquely identify the artwork.
+
+# This TTL file adheres to the guidelines and uses the appropriate ODRL classes and properties to define the offer, permissions, constraints, and assets.

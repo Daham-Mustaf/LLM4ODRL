@@ -1,0 +1,56 @@
+# Certainly! Below is a comprehensive ODRL (Open Digital Rights Language) policy written in Turtle (TTL) format, for the M�nzkabinett museum's digital repository of ArchiveEvent. This policy ensures that only authenticated users, who have registered with a valid user ID (either ORCID or email), can view and download the ArchiveEvent.
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#policy1>
+    a odrl:Policy ;
+    dc:title "M�nzkabinett Digital Repository Access Policy" ;
+    dc:description "A policy to control access to ArchiveEvent in the M�nzkabinett digital repository, ensuring only authenticated users can view and download the content." ;
+    odrl:profile <http://www.w3.org/ns/odrl/vocab#> ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://example.org/muenzkabinett/archiveevent> ;
+        odrl:action odrl:view, odrl:download ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:authenticatedUser ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "true"^^xsd:boolean
+        ]
+    ] ;
+    odrl:duty [
+        a odrl:Duty ;
+        odrl:action odrl:register ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:identifier ;
+            odrl:operator odrl:oneOf ;
+            odrl:rightOperand [
+                a odrl:Set ;
+                odrl:member [
+                    a odrl:Attribute ;
+                    odrl:attribute "ORCID" ;
+                    odrl:pattern "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$"^^xsd:string
+                ], [
+                    a odrl:Attribute ;
+                    odrl:attribute "Email" ;
+                    odrl:pattern "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"^^xsd:string
+                ]
+            ]
+        ]
+    ] ;
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:action odrl:unauthorizedAccess
+    ] .
+# ```
+
+# Explanation:
+# - The policy (`#policy1`) is aimed at controlling access to the ArchiveEvent in the M�nzkabinett digital repository.
+# - The policy includes a `Permission` that allows authenticated users to view and download the ArchiveEvent.
+# - The `constraint` within the `Permission` specifies that the user must be authenticated (`odrl:authenticatedUser` is `true`).
+# - A `Duty` is included, which requires users to register with a valid user ID. The `constraint` within the `Duty` specifies that the user ID must be either an ORCID or an email address, validated through regular expressions.
+# - A `Prohibition` is included to explicitly forbid unauthorized access (`odrl:unauthorizedAccess`).

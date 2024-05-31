@@ -1,0 +1,31 @@
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+# @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+# <http://example.com/policy/1> a odrl:Policy ;
+#     odrl:permission [
+#         a odrl:Permission ;
+#         odrl:action odrl:present ;
+#         odrl:target <http://example.com/artwork/LandschaftMitKahlemBaum> ;
+#         odrl:constraint [
+#             a odrl:Constraint ;
+#             odrl:operator odrl:eq ;
+#             odrl:rightOperand "Virtual"^^xsd:string ;
+#             odrl:leftOperand odrl:event
+#         ] ;
+#         odrl:constraint [
+#             a odrl:Constraint ;
+#             odrl:operator odrl:isPartOf ;
+#             odrl:rightOperand "Germany"^^xsd:string ;
+#             odrl:leftOperand odrl:location
+#         ]
+#     ] ;
+#     odrl:prohibition [
+#         a odrl:Prohibition ;
+#         odrl:action odrl:copy ;
+#         odrl:target <http://example.com/artwork/LandschaftMitKahlemBaum>
+#     ] ;
+#     odrl:prohibition [
+#         a odrl:Prohibition ;
+#         odrl:action odrl:distribute ;
+#         odrl:target <http://example.com/artwork/LandschaftMitKahlemBaum>
+#     ] .

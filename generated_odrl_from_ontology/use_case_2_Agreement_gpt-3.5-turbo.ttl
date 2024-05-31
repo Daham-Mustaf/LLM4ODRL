@@ -1,0 +1,37 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.com/policies/> .
+
+ex:policy1 a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:display ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:recipient ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand ex:MuseumM�nzkabinett
+        ]
+    ] ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:distribute ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:recipient ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand ex:MuseumM�nzkabinett
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:recipient ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand ex:Skulpturensammlung
+        ]
+    ] ;
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:action odrl:modify
+    ] ;
+    odrl:target ex:Gro�eD�ne ;
+    dc:title "Policy for sharing digital reproductions of 'Gro�e D�ne' by C. D. Friedrich" .

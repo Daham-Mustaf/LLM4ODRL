@@ -1,0 +1,42 @@
+# Here's an example of how you could model this policy using the ODRL ontology in the Turtle (ttl) format:
+
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/policy/1> a odrl:Policy ;
+    dc:title "DE_Staatstheater_Augsburg ShowTimesAPI Policy"@en ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://example.com/dataAPI/ShowTimesAPI> ;
+        odrl:assignee <http://example.com/agent/RegionalNewspaper>,
+                      <http://example.com/agent/CultureResearchInstitute>,
+                      <http://example.com/agent/CulturalPlatformBavaria> ;
+        odrl:action odrl:read ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:location ;
+            odrl:rightOperand "Germany" ;
+            odrl:operator odrl:eq
+        ] ,
+        [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:dateTime ;
+            odrl:rightOperand "2025-05-10T00:00:00Z"^^xsd:dateTime ;
+            odrl:operator odrl:lteq
+        ]
+    ] .
+
+<http://example.com/agent/RegionalNewspaper> a foaf:Agent ;
+    foaf:name "Regional Newspaper"@en .
+
+<http://example.com/agent/CultureResearchInstitute> a foaf:Agent ;
+    foaf:name "Culture Research Institute"@en .
+
+<http://example.com/agent/CulturalPlatformBavaria> a foaf:Agent ;
+    foaf:name "Cultural Platform Bavaria"@en .
+# ```
+
+# In this policy, the DE_Staatstheater_Augsburg is granting read permissions to the 'ShowTimesAPI' to the 'Regional Newspaper', 'Culture Research Institute', and 'Cultural Platform Bavaria'. This permission is subject to the constraints that the location must be Germany and the time must be on or before May 10, 2025.

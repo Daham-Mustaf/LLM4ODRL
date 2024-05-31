@@ -1,0 +1,54 @@
+# Based on the provided guidelines, below is a comprehensive ODRL policy for the Kupferstich-Kabinett museum's digital images of artwork:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix drk: <http://w3id.org/drk>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+
+drk:KupferstichKabinettPolicy a odrl:Offer, odrl:Policy;
+    odrl:uid <http://w3id.org/drk/KupferstichKabinettPolicy>;
+    dc:creator "Kupferstich-Kabinett Museum"^^xsd:string;
+    dc:description "Policy for viewing and downloading high-resolution images of artwork"^^xsd:string;
+    dc:title "Kupferstich-Kabinett Artwork Usage Policy"^^xsd:string;
+    odrl:hasPolicy drk:KupferstichKabinettPolicy;
+    odrl:permission [
+        a odrl:Permission;
+        odrl:action odrl:view;
+        odrl:target drk:Artwork;
+        odrl:assigner drk:KupferstichKabinettMuseum;
+        odrl:constraint [
+            a odrl:Constraint;
+            odrl:leftOperand odrl:count;
+            odrl:operator odrl:lteq;
+            odrl:rightOperand "50"^^xsd:integer;
+            odrl:unit "per day"^^xsd:string
+        ]
+    ];
+    odrl:prohibition [
+        a odrl:Prohibition;
+        odrl:action odrl:write;
+        odrl:target drk:HighResolutionArtwork;
+        odrl:assigner drk:KupferstichKabinettMuseum;
+        odrl:constraint [
+            a odrl:Constraint;
+            odrl:leftOperand odrl:resolution;
+            odrl:operator odrl:gt;
+            odrl:rightOperand "300"^^xsd:integer;
+            odrl:unit dbpedia:Dots_per_inch
+        ]
+    ].
+
+drk:Artwork a odrl:Asset;
+    odrl:uid <http://w3id.org/drk/Artwork>.
+
+drk:HighResolutionArtwork a odrl:Asset;
+    odrl:uid <http://w3id.org/drk/HighResolutionArtwork>.
+
+drk:KupferstichKabinettMuseum a odrl:Party, foaf:Organization;
+    odrl:uid <http://w3id.org/drk/KupferstichKabinettMuseum>;
+    dc:description "The Kupferstich-Kabinett museum"^^xsd:string.
+# ```
+
+# This policy states that users are allowed to view up to 50 images per day. Attempting to download high-resolution images (greater than 300 dpi) is prohibited. The policy is offered by the Kupferstich-Kabinett museum.

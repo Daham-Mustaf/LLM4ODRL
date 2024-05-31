@@ -1,0 +1,43 @@
+# @prefix odrl: < http://www.w3.org/ns/odrl/2/> .
+# @prefix dc: <http://purl.org/dc/terms/> .
+# @prefix drk: <http://w3id.org/drk> .
+
+# drk:ShowTimesAPIOffer a odrl:Offer, odrl:Policy ;
+#     odrl:uid <UI:ShowTimesAPIOffer>;
+#     dc:title "Offer for ShowTimesAPI Access"^^xsd:string ;
+#     dc:description "Policy regulating access to ShowTimesAPI for subscribers in Germany"^^xsd:string ;
+#     odrl:profile <UI:Profile_UID_here>;
+#     odrl:hasPolicy drk:ShowTimesAPIOffer ;
+#     odrl:permission [
+#         a odrl:Permission ;
+#         odrl:action odrl:distribute ;
+#         odrl:target drk:ShowTimesAPI ;
+#         odrl:assigner drk:DE_Staatstheater_Augsburg ;
+#         odrl:assignee [
+#             a odrl:Party, foaf:Organization;
+#             odrl:uid <UI:RegionalNewspaper>;
+#             dc:description "Regional Newspaper subscriber"^^xsd:string
+#         ];
+#         odrl:assignee [
+#             a odrl:Party, foaf:Organization;
+#             odrl:uid <UI:CultureResearchInstitute>;
+#             dc:description "Culture Research Institute subscriber"^^xsd:string
+#         ];
+#         odrl:assignee [
+#             a odrl:Party, foaf:Organization;
+#             odrl:uid <UI:CulturalPlatformBavaria>;
+#             dc:description "Cultural Platform Bavaria subscriber"^^xsd:string
+#         ];
+#         odrl:constraint [
+#             a odrl:Constraint ;
+#             odrl:leftOperand odrl:spatial ;
+#             odrl:operator odrl:isPartOf ;
+#             odrl:rightOperand "Germany"^^xsd:string
+#         ];
+#         odrl:constraint [
+#             a odrl:Constraint ;
+#             odrl:leftOperand odrl:dateTime ;
+#             odrl:operator odrl:lt ;
+#             odrl:rightOperand "2025-05-10"^^xsd:date
+#         ]
+#     ] .

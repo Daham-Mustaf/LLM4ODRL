@@ -1,0 +1,81 @@
+# ### Validation Report:
+
+# - Rule 1: 
+#   - The policy has an 'odrl:uid' property value identifying the Policy.
+
+# - Rule 2: 
+#   - The policy has an 'odrl:profile' property value identifying the Policy.
+
+# - Rule 3: 
+#   - The policy includes the mandatory meta-information properties: dc:creator, dc:title, dc:description, and dc:issued.
+
+# - Rule 4: 
+#   - The 'odrl:permission' includes the 'odrl:assigner' property value of type Party.
+
+# - Rule 5: 
+#   - The 'odrl:permission' includes the 'odrl:target' property value of type Asset.
+
+# - Rule 6: 
+#   - The 'odrl:action' property value in 'odrl:permission' adheres to standardized values.
+
+# - Rule 7: 
+#   - No duty property found in the policy.
+
+# - Rule 8: 
+#   - No 'odrl:prohibition' found in the policy.
+
+# - Rule 9: 
+#   - No 'odrl:prohibition' found in the policy.
+
+# - Rule 10: 
+#   - No 'odrl:prohibition' found in the policy.
+
+# - Rule 11: 
+#   - No 'odrl:operator', 'odrl:rightOperand', and 'odrl:rightOperand' found outside 'odrl:constraint'.
+
+# - Rule 12: 
+#   - No predefined LeftOperand instances found in the policy.
+
+# - Rule 13: 
+#   - No 'odrl:constraint' found in the policy.
+
+# - Rule 14: 
+#   - No 'odrl:operator' property found in the constraint.
+
+# - Rule 15: 
+#   - No 'odrl:constraint' found in the policy.
+
+# - Rule 16: 
+#   - No 'odrl:rightOperand' property found in the policy.
+
+# ### Conclusion:
+# The policy partially adheres to the validation rules. Further refinement is needed to ensure full compliance. 
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk> .
+
+drk:offer1 a odrl:Offer, odrl:Policy ;
+    odrl:uid <UI> ;
+    dc:creator "Daham Musta"^^xsd:string ;
+    dc:description "Summary Of given offer Description"^^xsd:string ;
+    dc:title "Print Your Offer Title"^^xsd:string ;
+    odrl:hasPolicy drk:offer1 ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:distribute ;
+        odrl:target [
+            a odrl:Asset ;
+            odrl:uid <UI> ;
+            dc:description "AssetDescription"^^xsd:string ;
+        ] ;
+        odrl:assignee [
+            a odrl:Party ;
+            odrl:uid <UI> ;
+            dc:description "AsignerDescription"^^xsd:string ;
+        ] ;
+        ... other properties
+    ] .
+# ```

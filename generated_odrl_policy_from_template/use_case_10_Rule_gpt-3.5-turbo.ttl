@@ -1,0 +1,39 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix drk: <http://w3id.org/drk>.
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+drk:DRK_0000001 a odrl:Set ;
+    odrl:uid "urn:uuid:DRK_0000001"^^xsd:anyURI ;
+    dcterms:description "rule description"^^xsd:string ;
+    dct:title "rule title"^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:use ;
+        odrl:target drk:AssetTemplate ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:uid "urn:uuid:print constrinatName"^^xsd:anyURI;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:isA ;
+            odrl:rightOperand drk:PlaceholderForApplyingRuleOnAsset
+        ]
+    ] .
+
+drk:PlaceholderForApplyingRuleOnAsset a odrl:Asset ;
+    odrl:value "Todestag"^^xsd:string ;
+    odrl:fee 500 .
+
+drk:AssetTemplate a odrl:Asset ;
+    odrl:value "Todestag"^^xsd:string .
+
+odrl:Constraint a odrl:Constraint ;
+    odrl:uid "urn:uuid:print constrinatName"^^xsd:anyURI;
+    odrl:leftOperand odrl:purpose ;
+    odrl:operator odrl:isA ;
+    odrl:rightOperand drk:PlaceholderForApplyingRuleOnAsset .
+
+odrl:Action a odrl:Action ;
+    odrl:value "use"^^xsd:string .

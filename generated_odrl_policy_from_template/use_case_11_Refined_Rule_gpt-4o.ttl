@@ -1,0 +1,61 @@
+# Given the generated ODRL policy and the validation rules, here is the revised and well-formatted TTL output:
+
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk> .
+
+# Define the Rule
+drk:DRK_0000001 a odrl:Set ;
+    odrl:uid <urn:uuid:DRK_0000001> ;
+    odrl:profile <http://example.org/profile> ; # Placeholder for actual profile URI
+    dc:creator "M�nzkabinett"^^xsd:string ;
+    dc:title "No Fees for Data Provision for Reputation or Marketing Promotion"^^xsd:string ;
+    dc:description "The M�nzkabinett does not charge fees for the provision of data when the purpose is the enhancement of reputation or marketing promotion."^^xsd:string ;
+    dc:issued "2023-10-05T00:00:00Z"^^xsd:dateTime ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:use ;
+        odrl:assigner [
+            a odrl:Party ;
+            odrl:uid "urn:uuid:Party_Muenzkabinett" ;
+            dc:description "The M�nzkabinett"^^xsd:string ;
+        ] ;
+        odrl:target [
+            a odrl:Asset ;
+            odrl:uid "urn:uuid:AssetTemplate" ;
+            dc:description "Data provided by M�nzkabinett"^^xsd:string ;
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:uid "urn:uuid:purposeConstraint"^^xsd:anyURI ;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:isA ;
+            odrl:rightOperand <http://example.org/EnhancementOfReputation> ;
+            odrl:rightOperand <http://example.org/MarketingPromotion> ;
+            odrl:dataType xsd:anyURI ;
+        ]
+    ] .
+
+# Placeholder for Asset and Parties if needed
+:AssetTemplate a odrl:Asset .
+:PartyTemplate a odrl:Party .
+# ```
+
+# ### Explanation of Changes:
+
+# 1. **odrl:uid**: Added `odrl:uid` for the `odrl:Set`, `odrl:Constraint`, `odrl:Party`, and `odrl:Asset`.
+# 2. **odrl:profile**: Added `odrl:profile` with a placeholder URI.
+# 3. **dc:creator**, **dc:title**, **dc:description**, and **dc:issued**:
+#    - Added `dc:creator` with "M�nzkabinett".
+#    - Retained `dc:title` and `dc:description`.
+#    - Added `dc:issued` with the current date-time.
+# 4. **odrl:assigner**: Added `odrl:assigner` inside `odrl:permission` with `odrl:Party`, `odrl:uid`, and `dc:description`.
+# 5. **odrl:target**: Added `odrl:target` inside `odrl:permission` with `odrl:Asset`, `odrl:uid`, and `dc:description`.
+# 6. **odrl:constraint**: 
+#    - Moved `odrl:rightOperand` inside the `odrl:constraint` block.
+#    - Added `odrl:dataType` specifying the data type of the `rightOperand`.
+# 7. **odrl:action**: Ensured it uses a standardized value `odrl:use`.
+
+# This TTL format now adheres to the specified validation rules. Replace the placeholder URIs with actual URIs as required.

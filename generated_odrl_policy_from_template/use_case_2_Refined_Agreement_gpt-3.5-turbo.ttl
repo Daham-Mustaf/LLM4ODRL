@@ -1,0 +1,64 @@
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+# @prefix dc: <http://purl.org/dc/terms/> .
+# @prefix drk: <http://w3id.org/drk> .
+
+# # Define the ODRL Offer Policy for providing public access to digital reproductions
+# drk:AgreementOffer a odrl:Offer, odrl:Policy ;
+#    dc:creator "Skulpturensammlung museum"^^xsd:string ;
+#    dc:description "The Skulpturensammlung museum wants to provide public access to digital reproductions of the artwork 'Große Düne' by C. D. Friedrich."^^xsd:string ;
+#    dc:title "Public Access to Digital Reproductions of 'Große Düne'"^^xsd:string ;
+#    dc:issued "2022-10-20T10:00:00"^^xsd:dateTime ;
+#    odrl:profile <UI:Profile_UID_here> ;
+#    odrl:hasPolicy drk:AgreementOffer .
+
+# # Define the Permission for viewing and downloading digital images
+# drk:PermissionViewDownload a odrl:Permission ;
+#    odrl:action odrl:view, odrl:download ;
+#    odrl:target drk:DigitalImages ;
+#    odrl:assigner drk:MuseumMünzkabinett ;
+#    odrl:assignee drk:Public ;
+#    odrl:hasPolicy drk:PermissionViewDownload .
+
+# # Define the Asset for Digital Images
+# drk:DigitalImages a odrl:Asset ;
+#    odrl:uid <UI:DigitalImages> ;
+#    dc:description "Digital images of the artwork 'Große Düne' by C. D. Friedrich."^^xsd:string ;
+#    odrl:version "1"^^xsd:string ;
+#    odrl:partOf drk:ArtworkCollection .
+
+# # Define the Asset Collection for Artwork
+# drk:ArtworkCollection a odrl:AssetCollection ;
+#    odrl:partOf drk:MuseumCollection .
+
+# # Define the Party for Museum Münzkabinett
+# drk:MuseumMünzkabinett a odrl:Party, foaf:Organization ;
+#    odrl:uid <UI:MuseumMünzkabinett> ;
+#    dc:description "Museum Münzkabinett - Organization responsible for the Artwork."^^xsd:string .
+
+# # Define the Party for Public
+# drk:Public a odrl:Party, foaf:Person ;
+#    odrl:uid <UI:Public> ;
+#    dc:description "General public allowed to view and download digital images."^^xsd:string .
+
+# # Define the Asset Collection for Museum Collection
+# drk:MuseumCollection a odrl:AssetCollection ;
+#    odrl:partOf drk:ArtGallery .
+
+# # Define the Asset Collection for Art Gallery
+# drk:ArtGallery a odrl:AssetCollection .
+
+# # Define the Duty for non-commercial use
+# drk:DutyNonCommercialUse a odrl:Duty ;
+#    odrl:action odrl:use ;
+#    odrl:target drk:DigitalImages ;
+#    odrl:assigner drk:MuseumMünzkabinett ;
+#    odrl:assignee drk:Public ;
+#    odrl:hasPolicy drk:DutyNonCommercialUse .
+
+# # Define the Prohibition for commercial use
+# drk:ProhibitionCommercialUse a odrl:Prohibition ;
+#    odrl:action odrl:use ;
+#    odrl:target drk:DigitalImages ;
+#    odrl:assigner drk:MuseumMünzkabinett ;
+#    odrl:assignee drk:Public ;
+#    odrl:hasPolicy drk:ProhibitionCommercialUse .

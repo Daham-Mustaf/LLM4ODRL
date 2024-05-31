@@ -1,0 +1,19 @@
+use_cases:
+  agreement:
+    use_case_1: "The DE_Staatstheater_Augsburg, a German cultural organization, manages the dataAPI 'ShowTimesAPI'. This dataAPI holds valuable cultural assets. Policy regulates access to this dataAPI, granting subscribers like 'Regional Newspaper', 'Culture Research Institute', and 'Cultural Platform Bavaria'. Access is restricted to Germany, and usage rights expire on May 10, 2025."
+    use_case_2: "The Skulpturensammlung museum wants to provide public access to digital reproductions of the artwork 'Große Düne' by C. D. Friedrich. Museum Münzkabinett and are permitted to view and download digital images for Sharing and non-commercial use."
+    use_case_3: "The DE_Staatstheater_Augsburg collaborates with a local university for an educational program on theater history and cultural heritage. They offer access to the 'HistoricalArchives' Asset, containing digitized historical data. Access is free for scientific research, enabling scholars to explore the dataset without fees."
+    use_case_4: "The Münzkabinett museum provides access to a digital repository of ArchiveEvent. Users must register with a valid user ID, which can be either an ORCID or an email address, to access the repository. The policy ensures that only authenticated users can view and download the ArchiveEvent."
+  
+  offer:
+    use_case_5: "Kupferstich-Kabinett introduces the 'Vorlagenzeichner' artwork as an asset, permitting access for a one-month duration. The policy includes restrictions on the type of device (loggingServer) used to access the artwork."
+    use_case_6: "The Kupferstich-Kabinett museum provides digital images of the artwork 'Bauernhäuser am Berghang' by Caspar David Friedrich.\n- Small and Medium Images: These images are freely accessible to everyone. No membership is required to view or download them.\n- Original High-Resolution Image: Access to this image is restricted to members of the Kupferstich-Kabinett museum. Membership verification is required to obtain this high-resolution image."
+    use_case_7: "For 'Landschaft mit kahlem Baum' Artwork\nTo be presented in a virtual format, the following policy applies:\nEvent Format: The presentation of 'Landschaft mit kahlem Baum' will be conducted as a virtual event.\nGeographic Limitation: Access to the virtual presentation is restricted to participants with verified IP addresses located within Germany.\nNo Copying: Participants are strictly prohibited from copying or distributing any digital content presented during the virtual event."
+    use_case_8: "The Kupferstich-Kabinett museum provides digital images of various artworks. Resolution for Print Purposes: If the resolution of the digital image exceeds 300 dpi, a fee applies for access.\nGeneral Access: Images with a resolution of 300 dpi or lower are freely accessible to the public without any fees."
+    use_case_9: "The Kupferstich-Kabinett museum provides digital images of its artwork collection with the following usage limitations:\nViewing Limitations: Users are limited to viewing a maximum of 50 images per day. This ensures fair usage and availability of resources to all users.\nHigh-Resolution Downloads: Downloading high-resolution images (greater than 300 dpi) requires a special request and an additional fee."
+  
+  rules:
+    use_case_10: "The Münzkabinett Museum must pay a fee of 500 euros for the digitization of the 'Todestag' artwork."
+    use_case_11: "The Münzkabinett does not charge fees for the provision of data when the purpose is the enhancement of reputation or marketing promotion."
+    use_case_12: "The Münzkabinett Museum seeks permission where purpose is an instance of ArchiveEvent."
+

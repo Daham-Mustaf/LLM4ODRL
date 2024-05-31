@@ -1,0 +1,38 @@
+# Based on the provided ODRL ontology and instructions, the ODRL rule for the Münzkabinett Museum, where the purpose is an instance of ArchiveEvent, can be formatted as follows:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+
+drk:DRK_00000004 a odrl:Set ;
+    odrl:uid "urn:uuid:DRK_00000004"^^xsd:anyURI ;
+    dct:description "Permission for Münzkabinett Museum to archive events"^^xsd:string ;
+    dct:title "Münzkabinett Museum Archive Event Permission Rule"^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target dbpedia:Münzkabinett_Museum ;
+        odrl:assigner dbpedia:Münzkabinett_Museum ;
+        odrl:action [
+            a odrl:Action ;
+            odrl:rdf:value odrl:archive ;
+            odrl:refinement [
+                a odrl:Constraint ;
+                odrl:uid "urn:uuid:ArchiveEvent"^^xsd:anyURI ;
+                odrl:leftOperand odrl:purpose ;
+                odrl:operator odrl:isA ;
+                odrl:rightOperand dbpedia:ArchiveEvent ;
+                odrl:datatype xsd:string ;
+            ]
+        ]
+    ] .
+# ```
+
+# In this rule:
+
+# - The rule identifier is `DRK_00000004`.
+# - The rule title is "Münzkabinett Museum Archive Event Permission Rule" and the description is "Permission for Münzkabinett Museum to archive events".
+# - The rule gives the Münzkabinett Museum (the assigner) permission to perform the `odrl:archive` action.
+# - The action is refined by a constraint, which states that the purpose of the action must be an instance of `dbpedia:ArchiveEvent`.
+# - The datatype of the constraint's right operand is `xsd:string`.

@@ -1,0 +1,67 @@
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+
+# Define the Party representing the Kupferstich-Kabinett museum
+drk:KupferstichKabinett a odrl:Party, foaf:Organization ;
+    odrl:uid <http://w3id.org/drk/KupferstichKabinett> ;
+    dc:description "The Kupferstich-Kabinett museum in Dresden, Germany"^^xsd:string .
+
+# Define the Asset class for digital images
+drk:DigitalImage a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/DigitalImage> ;
+    dc:description "Digital images of various artworks provided by the Kupferstich-Kabinett museum"^^xsd:string .
+
+# Define the ODRL Offer Policy for Print Purposes
+drk:PrintIntendedOffer a odrl:Offer, odrl:Policy ;
+    odrl:profile <http://w3id.org/drk/Profile_Print> ;
+    odrl:uid <http://w3id.org/drk/PrintIntendedOffer> ;
+    dc:creator "Kupferstich-Kabinett"^^xsd:string ;
+    dc:description "An offer for accessing high-resolution digital images for print purposes"^^xsd:string ;
+    dc:title "Print Intention Offer"^^xsd:string ;
+    odrl:assigner drk:KupferstichKabinett ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:print ;
+        odrl:target drk:DigitalImage ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:resolution ;
+            odrl:operator odrl:gt ;
+            odrl:rightOperand "300"^^xsd:integer ;
+            odrl:unit dbpedia:Dots_per_inch
+        ] ;
+        odrl:duty [
+            a odrl:Duty ;
+            odrl:action odrl:pay ;
+            odrl:target drk:DigitalImage
+        ]
+    ] .
+
+# Define the ODRL Offer Policy for General Access
+drk:GeneralAccessOffer a odrl:Offer, odrl:Policy ;
+    odrl:profile <http://w3id.org/drk/Profile_GeneralAccess> ;
+    odrl:uid <http://w3id.org/drk/GeneralAccessOffer> ;
+    dc:creator "Kupferstich-Kabinett"^^xsd:string ;
+    dc:description "An offer for accessing digital images with a resolution of 300 dpi or lower"^^xsd:string ;
+    dc:title "General Access Offer"^^xsd:string ;
+    odrl:assigner drk:KupferstichKabinett ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:display ;
+        odrl:target drk:DigitalImage ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:resolution ;
+            odrl:operator odrl:lteq ;
+            odrl:rightOperand "300"^^xsd:integer ;
+            odrl:unit dbpedia:Dots_per_inch
+        ]
+    ] .
+# ```
+
+# This Turtle (TTL) file defines two ODRL Offer policies for the Kupferstich-Kabinett museum, detailing the conditions under which digital images can be accessed either for print purposes (with a fee for high-resolution images) or for general access (free for images with a resolution of 300 dpi or lower).

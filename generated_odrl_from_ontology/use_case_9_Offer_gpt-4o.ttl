@@ -1,0 +1,58 @@
+# Certainly! Below is a comprehensive ODRL policy in Turtle (ttl) format for the Kupferstich-Kabinett museum, based on the provided usage limitations.
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ex: <http://example.org/> .
+
+ex:policy001 a odrl:Policy ;
+    dct:title "Kupferstich-Kabinett Digital Image Usage Policy" ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:use ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:count ;
+            odrl:operator odrl:lteq ;
+            odrl:rightOperand "50"^^xsd:integer ;
+            odrl:unit odrl:day ;
+            odrl:comment "Users are limited to viewing a maximum of 50 images per day."
+        ]
+    ] ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:download ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand ex:imageResolution ;
+            odrl:operator odrl:gt ;
+            odrl:rightOperand "300"^^xsd:integer ;
+            odrl:unit ex:dpi ;
+            odrl:comment "Downloading high-resolution images (greater than 300 dpi) requires a special request and an additional fee."
+        ]
+    ] ;
+    odrl:policyType odrl:usagePolicy ;
+    dct:creator <http://kupferstich-kabinett.de> ;
+    dct:issued "2023-10-01"^^xsd:date .
+
+ex:imageResolution a skos:Concept ;
+    skos:prefLabel "Image Resolution" ;
+    skos:definition "The resolution of an image, measured in dots per inch (dpi)." .
+
+ex:dpi a skos:Concept ;
+    skos:prefLabel "Dots Per Inch (dpi)" ;
+    skos:definition "A measure of the resolution of a printed or digital image." .
+# ```
+
+# Explanation of the Turtle document:
+
+# 1. **Namespaces and Prefixes**: The prefixes `odrl`, `dct`, `skos`, and `ex` are defined to identify the elements used in the policy.
+# 2. **Policy Definition**: The policy is defined as `ex:policy001` with a title, permissions, constraints, and metadata.
+# 3. **Permissions and Constraints**:
+#    - **Viewing Limitation**: Users are limited to viewing a maximum of 50 images per day (`odrl:constraint` with `odrl:leftOperand` as `odrl:count` and `odrl:rightOperand` as "50").
+#    - **High-Resolution Downloads**: Downloading high-resolution images (greater than 300 dpi) requires a special request and an additional fee (`odrl:constraint` with `odrl:leftOperand` as `ex:imageResolution` and `odrl:rightOperand` as "300").
+# 4. **Metadata**: Information about the policy creator and issuance date is included.
+# 5. **Concept Definitions**: Definitions for custom concepts like `ex:imageResolution` and `ex:dpi` are provided.
+
+# This Turtle document ensures that the usage limitations are clearly defined and machine-readable, adhering to the ODRL ontology.

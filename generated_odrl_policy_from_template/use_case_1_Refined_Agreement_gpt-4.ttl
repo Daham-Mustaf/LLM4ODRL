@@ -1,0 +1,37 @@
+# The generated policy complies with the ODRL rules as follows:
+
+# rule_1: The policy has 'odrl:uid' property value of type IRI to identify the Policy. 
+
+# rule_2: The policy doesn't include 'odrl:profile' property. It can be added as per the requirement.
+
+# rule_3: The policy includes the mandatory meta-information properties: dc:creator, dc:title, dc:description.
+
+# rule_4: The policy includes an 'odrl:assigner' of type Party who is issuing the policy.
+
+# rule_5: The policy includes 'odrl:assignee' of type Party who receive the policy.
+
+# rule_6: The policy includes 'odrl:target' property value of type Asset.
+
+# rule_7: The 'odrl:action' Property in 'odrl:permission' has the value odrl:read which is within the standardized values.
+
+# rule_8: The policy doesn't have 'odrl:duty', hence no 'odrl:target' property value of type Asset is needed. 
+
+# rule_9: The policy doesn't have 'odrl:prohibition', hence no 'odrl:assigner' of type Party is needed.
+
+# rule_10: The policy doesn't have 'odrl:prohibition', hence no 'odrl:target' property value of type Asset is needed.
+
+# rule_11: The policy doesn't have 'odrl:prohibition', hence no 'odrl:action' property is needed.
+
+# rule_12: The policy correctly defines odrl:operator, odrl:rightOperand and odrl:rightOperand inside 'odrl:constraint' block.
+
+# rule_13: The 'odrl:leftOperand' property values are one of the predefined LeftOperand instances: odrl:spatial and odrl:dateTime.
+
+# rule_14: The policy doesn't have 'odrl:uid' property for 'odrl:constraint'. It can be added as per the requirement.
+
+# rule_15: The 'odrl:operator' property in the constraint is one of the predefined values: odrl:eq and odrl:lt.
+
+# rule_16: The policy doesn't have odrl:dataType property specifying the data type of the rightOperand. It can be added as per the requirement.
+
+# rule_17: The 'odrl:rightOperand' property in the ODRL policy includes a data type for its value.
+
+# Please note, the policy can be refined further based on specific requirements.

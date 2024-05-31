@@ -1,0 +1,47 @@
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+# @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# @prefix dc: <http://purl.org/dc/terms/> .
+# @prefix drk: <http://w3id.org/drk> .
+
+# drk:OfferCollaboration a odrl:Offer, odrl:Policy ;
+#     odrl:profile <UI:Profile_Namehere> ;
+#     odrl:uid <UI:OfferCollaboration> ;
+#     dc:title "Collaboration Agreement for Educational Program"^^xsd:string ;
+#     dc:creator "DE_Staatstheater_Augsburg"^^xsd:string ;
+#     dc:description "The DE_Staatstheater_Augsburg collaborates with a local university for an educational program on theater history and cultural heritage. They offer access to the 'HistoricalArchives' Asset, containing digitized historical data. Access is free for scientific research, enabling scholars to explore the dataset without fees."^^xsd:string ;
+#     dc:issued "2022-11-02T14:56:00"^^xsd:dateTime ;
+#     odrl:hasPolicy drk:OfferCollaboration ;
+#     odrl:permission [
+#         a odrl:Permission ;
+#         odrl:action odrl:distribute ;
+#         odrl:target drk:HistoricalArchives ;
+#         odrl:assigner drk:DE_Staatstheater_Augsburg ;
+#         odrl:constraint [
+#             a odrl:Constraint ;
+#             odrl:uid <UI:Constraint1> ;
+#             odrl:leftOperand odrl:access ;
+#             odrl:operator odrl:lteq ;
+#             odrl:rightOperand "free"^^xsd:string ;
+#             odrl:dataType xsd:string
+#         ]
+#     ] ;
+#     odrl:prohibition [
+#         a odrl:Prohibition ;
+#         odrl:action odrl:transfer ;
+#         odrl:target drk:HistoricalArchives ;
+#         odrl:assigner drk:DE_Staatstheater_Augsburg ;
+#         odrl:remedy [
+#             a odrl:Duty ;
+#             odrl:action odrl:compensate ;
+#             odrl:target drk:LocalUniversity ;
+#             odrl:assigner drk:DE_Staatstheater_Augsburg
+#         ]
+#     ] .
+
+# drk:DE_Staatstheater_Augsburg a odrl:Party ;
+#     odrl:uid <UI:Party1> ;
+#     dc:description "DE_Staatstheater_Augsburg party description"^^xsd:string .
+
+# drk:HistoricalArchives a odrl:Asset ;
+#     odrl:uid <UI:Asset1> ;
+#     dc:description "HistoricalArchives Asset containing digitized historical data"^^xsd:string .

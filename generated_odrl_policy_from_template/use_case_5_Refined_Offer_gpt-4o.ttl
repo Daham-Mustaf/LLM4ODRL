@@ -1,0 +1,70 @@
+# Here is the revised TTL (Turtle) file based on the validation rules provided:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+
+# Define the ODRL Offer Policy
+drk:VorlagenzeichnerOffer a odrl:Offer, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/VorlagenzeichnerOffer> ;
+    dc:creator "Kupferstich-Kabinett"^^xsd:string ;
+    dc:description "Offer for accessing the 'Vorlagenzeichner' artwork for a one-month duration with device restrictions."^^xsd:string ;
+    dc:title "Access to 'Vorlagenzeichner' Artwork"^^xsd:string ;
+    dc:issued "2023-10-05T00:00:00Z"^^xsd:dateTime ;
+    odrl:profile <http://w3id.org/drk/ODRL_Profile> ;
+    odrl:assigner drk:KupferstichKabinett ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target drk:VorlagenzeichnerArtwork ;
+        odrl:action odrl:use ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:uid <http://w3id.org/drk/Constraint1> ;
+            odrl:leftOperand odrl:systemDevice ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "loggingServer"^^xsd:string
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:uid <http://w3id.org/drk/Constraint2> ;
+            odrl:leftOperand odrl:dateTime ;
+            odrl:operator odrl:lteq ;
+            odrl:rightOperand "P1M"^^xsd:duration
+        ]
+    ] .
+
+# Define the Assigner Party
+drk:KupferstichKabinett a odrl:Party, foaf:Organization ;
+    odrl:uid <http://w3id.org/drk/KupferstichKabinett> ;
+    dc:description "Kupferstich-Kabinett, the owner of the 'Vorlagenzeichner' artwork."^^xsd:string .
+
+# Define the Asset
+drk:VorlagenzeichnerArtwork a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/VorlagenzeichnerArtwork> ;
+    dc:title "Vorlagenzeichner"^^xsd:string ;
+    dc:description "An artwork in the Kupferstich-Kabinett collection."^^xsd:string .
+# ```
+
+# ### Explanation of Changes:
+# 1. **Rule 1:** The `odrl:uid` property is already defined for the policy.
+# 2. **Rule 2:** The `odrl:profile` property is already defined.
+# 3. **Rule 3:** Added `dc:issued` property with the current date and time.
+# 4. **Rule 4:** The `odrl:assigner` property is already defined within the policy.
+# 5. **Rule 5:** The `odrl:target` property within `odrl:permission` is already defined.
+# 6. **Rule 6:** The `odrl:use` action is one of the standardized values.
+# 7. **Rule 7:** Not applicable as there are no `odrl:duty` properties.
+# 8. **Rule 8:** Not applicable as there are no `odrl:prohibition` properties.
+# 9. **Rule 9:** Not applicable as there are no `odrl:prohibition` properties.
+# 10. **Rule 10:** The `odrl:use` action is one of the standardized values.
+# 11. **Rule 11:** The `odrl:operator` and `odrl:rightOperand` are correctly placed inside the `odrl:constraint` block.
+# 12. **Rule 12:** The `odrl:leftOperand` values are standardized (e.g., `odrl:systemDevice`, `odrl:dateTime`).
+# 13. **Rule 13:** Added `odrl:uid` for each `odrl:constraint`.
+# 14. **Rule 14:** The `odrl:operator` values are standardized (e.g., `odrl:eq`, `odrl:lteq`).
+# 15. **Rule 15:** Ensured each `odrl:constraint` has an appropriate data type.
+# 16. **Rule 16:** Ensured the `odrl:rightOperand` includes a data type for its value.
+
+# This revised TTL file adheres to all the specified validation rules.

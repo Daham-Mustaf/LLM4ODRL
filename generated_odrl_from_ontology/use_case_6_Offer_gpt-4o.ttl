@@ -1,0 +1,57 @@
+# Certainly! Below is an ODRL policy in Turtle (ttl) format for the specified conditions regarding the digital images of the artwork 'Bauernhäuser am Berghang' by Caspar David Friedrich provided by the Kupferstich-Kabinett museum:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.org/ns#> .
+
+# Policy for Small and Medium Images
+ex:policySmallMediumImages a odrl:Set ;
+    dct:title "Access Policy for Small and Medium Images of 'Bauernhäuser am Berghang'" ;
+    odrl:permission [
+        odrl:target ex:smallMediumImages ;
+        odrl:action odrl:use ;
+        odrl:assigner ex:KupferstichKabinett ;
+        odrl:assignee odrl:public
+    ] .
+
+# Policy for Original High-Resolution Image
+ex:policyHighResImage a odrl:Set ;
+    dct:title "Access Policy for Original High-Resolution Image of 'Bauernhäuser am Berghang'" ;
+    odrl:permission [
+        odrl:target ex:highResImage ;
+        odrl:action odrl:use ;
+        odrl:assigner ex:KupferstichKabinett ;
+        odrl:assignee [
+            a odrl:Party ;
+            odrl:role odrl:member ;
+            odrl:uid ex:KupferstichKabinettMembers
+        ] ;
+        odrl:constraint [
+            odrl:leftOperand odrl:membership ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand ex:KupferstichKabinettMembers
+        ]
+    ] .
+
+# Definitions of resources
+ex:smallMediumImages a odrl:Asset ;
+    dct:title "Small and Medium Images of 'Bauernhäuser am Berghang'" ;
+    dct:source <https://kupferstich-kabinett.example.org/small-medium-images/bauernhauser-am-berghang> .
+
+ex:highResImage a odrl:Asset ;
+    dct:title "Original High-Resolution Image of 'Bauernhäuser am Berghang'" ;
+    dct:source <https://kupferstich-kabinett.example.org/high-res-image/bauernhauser-am-berghang> .
+
+# Definition of the Kupferstich-Kabinett museum
+ex:KupferstichKabinett a odrl:Party ;
+    dct:title "Kupferstich-Kabinett Museum" ;
+    odrl:uid <https://kupferstich-kabinett.example.org> .
+
+# Definition of the Kupferstich-Kabinett Members
+ex:KupferstichKabinettMembers a odrl:PartyCollection ;
+    dct:title "Members of the Kupferstich-Kabinett Museum" ;
+    odrl:uid <https://kupferstich-kabinett.example.org/members> .
+# ```
+
+# This ODRL policy specifies two distinct sets of permissions: one for small and medium images that are freely accessible to everyone, and one for the original high-resolution image that is restricted to verified members of the Kupferstich-Kabinett museum. Each set is defined with the appropriate constraints and parties involved.

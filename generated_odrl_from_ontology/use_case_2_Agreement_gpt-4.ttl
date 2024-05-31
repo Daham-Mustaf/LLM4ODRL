@@ -1,0 +1,39 @@
+# ```
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.com/ontology#> .
+
+ex:Policy1 a odrl:Policy ;
+    rdfs:comment "The Skulpturensammlung museum wants to provide public access to digital reproductions of the artwork 'Große Düne' by C. D. Friedrich. Museum Münzkabinett and are permitted to view and download digital images for Sharing and non-commercial use."@en ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target ex:GroßeDüne ;
+        odrl:assigner ex:SkulpturensammlungMuseum ;
+        odrl:assignee ex:MuseumMünzkabinett ;
+        odrl:action odrl:view, odrl:download, odrl:share ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "non-commercial use"@en
+        ]
+    ] .
+
+ex:GroßeDüne a dct:Image ;
+    rdfs:label "Große Düne"@en ;
+    dct:creator "C. D. Friedrich"@en .
+
+ex:SkulpturensammlungMuseum a ex:Museum ;
+    rdfs:label "Skulpturensammlung museum"@en .
+
+ex:MuseumMünzkabinett a ex:Museum ;
+    rdfs:label "Museum Münzkabinett"@en .
+# ```
+
+# In the above TTL,
+
+# - `ex:Policy1` is the policy which provides permission to `ex:MuseumMünzkabinett` to view, download, and share the digital image of `ex:GroßeDüne`.
+# - `ex:GroßeDüne` is the digital image of the artwork by 'C. D. Friedrich'.
+# - `ex:SkulpturensammlungMuseum` is the assigner of the permission (i.e., the provider of the digital image).
+# - `ex:MuseumMünzkabinett` is the assignee of the permission (i.e., the entity which is granted permission).
+# - The permission includes a constraint that the use of the digital image is for non-commercial purposes.

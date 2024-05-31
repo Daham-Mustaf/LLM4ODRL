@@ -1,0 +1,33 @@
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk> .
+
+# Define the ODRL Offer Policy
+drk:KupferstichKabinettPolicy a odrl:Offer, odrl:Policy ;
+    dc:creator "Daham Musta"^^xsd:string ;
+    dc:description "The Kupferstich-Kabinett museum provides digital images of various artworks."^^xsd:string ;
+    dc:title "Access to Kupferstich-Kabinett Museum Digital Images Policy"^^xsd:string ;
+    dc:issued "2022-10-03T14:30:00"^^xsd:dateTime ;
+    odrl:profile <UI:Profile_UID_here> ;
+    odrl:hasPolicy drk:KupferstichKabinettPolicy .
+
+# Define the Asset class
+drk:DigitalImageAsset rdf:type odrl:Asset ;
+    odrl:uid <UI:DigitalImageAsset> ;
+    dc:description "Digital image of artwork"^^xsd:string .
+
+# Instance of Permission for Resolution for Print Purposes
+drk:ResolutionForPrintPermission a odrl:Permission, odrl:Policy ;
+    odrl:profile <UI:Profile_UID_here> ;
+    odrl:action odrl:print ;
+    odrl:target drk:DigitalImageAsset ;
+    odrl:hasPolicy drk:ResolutionForPrintPermission .
+
+# Instance of Permission for General Access
+drk:GeneralAccessPermission a odrl:Permission, odrl:Policy ;
+    odrl:profile <UI:Profile_UID_here> ;
+    odrl:action odrl:display ;
+    odrl:target drk:DigitalImageAsset ;
+    odrl:hasPolicy drk:GeneralAccessPermission .
+# ```

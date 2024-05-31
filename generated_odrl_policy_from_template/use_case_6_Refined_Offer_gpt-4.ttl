@@ -1,0 +1,78 @@
+# # The generated ODRL policy is mostly in compliance with the described rules, but there are a few points that need to be addressed:
+
+# # 1. Applying rule 1, the policy is missing the 'odrl:uid' property for the Policy. The corrected policy should include this property, for example:
+# #     ```turtle
+#     drk:ArtworkImagesOffer a odrl:Offer, odrl:Policy ;
+#         odrl:uid <UI:ArtworkImagesOffer>;
+# #     ```
+# # 2. Rule 3 is violated as the policy lacks the 'dc:issued' property. The corrected policy should include this property, for example:
+# #     ```turtle
+#     drk:ArtworkImagesOffer a odrl:Offer, odrl:Policy ;
+#         dc:issued "2021-12-01T00:00:00"^^xsd:dateTime;
+# #     ```
+# # 3. The policy adheres to rules 4 and 5. The assigner is clearly defined and each permission has a target that is properly identified.
+   
+# # 4. The policy adheres to rule 6. The action for each permission is 'odrl:read', which is a standardized value.
+
+# # 5. Rule 7 is not violated as there is no 'odrl:target' property in 'odrl:duty'. 
+
+# # 6. Rule 8, 9 and 10 are not violated as there is no 'odrl:prohibition' in the policy.
+
+# # 7. Rule 11 is not violated as there are no 'odrl:operator', 'odrl:rightOperand', and 'odrl:rightOperand' outside 'odrl:constraint'.
+
+# # 8. Rule 12, 13, 14, 15 and 16 are not violated as there is no 'odrl:constraint' in the policy.
+
+# # The corrected policy considering the above points would look like this:
+
+# # ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk> .
+
+# Define the ODRL Offer Policy
+drk:ArtworkImagesOffer a odrl:Offer, odrl:Policy ;
+    odrl:uid <UI:ArtworkImagesOffer>;
+    dc:creator "Kupferstich-Kabinett Museum"^^xsd:string ;
+    dc:description "Offer for the digital images of the artwork 'Bauernh�user am Berghang' by Caspar David Friedrich."^^xsd:string ;
+    dc:title "Digital Images Offer"^^xsd:string  ;
+    dc:issued "2021-12-01T00:00:00"^^xsd:dateTime;
+    odrl:profile <UI:ArtworkImagesOffer>;
+
+    odrl:permission [
+        a odrl:Permission;
+        odrl:target drk:SmallAndMediumImages;
+        odrl:action odrl:read;
+        odrl:assigner drk:KupferstichKabinettMuseum;
+    ];
+
+    odrl:permission [
+        a odrl:Permission;
+        odrl:target drk:HighResolutionImage;
+        odrl:action odrl:read;
+        odrl:assigner drk:KupferstichKabinettMuseum;
+        odrl:duty [
+            a odrl:Duty;
+            odrl:action odrl:obtainConsent;
+            odrl:assignee drk:KupferstichKabinettMuseumMembers;
+        ];
+    ].
+
+# Define the assets
+drk:SmallAndMediumImages a odrl:Asset ;
+    odrl:uid <UI:SmallAndMediumImages> ;
+    dc:description "Small and medium images of the artwork 'Bauernh�user am Berghang' by Caspar David Friedrich."^^xsd:string .
+
+drk:HighResolutionImage a odrl:Asset ;
+    odrl:uid <UI:HighResolutionImage> ;
+    dc:description "High-resolution image of the artwork 'Bauernh�user am Berghang' by Caspar David Friedrich."^^xsd:string .
+
+# Define the parties
+drk:KupferstichKabinettMuseum a odrl:Party ;
+    odrl:uid <UI:KupferstichKabinettMuseum> ;
+    dc:description "The Kupferstich-Kabinett museum."^^xsd:string .
+
+drk:KupferstichKabinettMuseumMembers a odrl:Party ;
+    odrl:uid <UI:KupferstichKabinettMuseumMembers> ;
+    dc:description "Members of the Kupferstich-Kabinett museum."^^xsd:string .
+# ```

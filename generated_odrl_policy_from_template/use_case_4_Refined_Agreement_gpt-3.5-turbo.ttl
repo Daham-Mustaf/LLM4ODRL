@@ -1,0 +1,70 @@
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+# @prefix dc: <http://purl.org/dc/terms/>.
+# @prefix drk: <http://w3id.org/drk/>.
+
+# # Define the ODRL Offer Policy
+# drk:MünzkabinettAgreement a odrl:Offer, odrl:Policy ;
+#     # Metadata using Dublin Core terms
+#     dc:creator "Münzkabinett museum"^^xsd:string ;
+#     dc:description "Provides access to a digital repository of ArchiveEvent"^^xsd:string ;
+#     dc:title "Münzkabinett Agreement"^^xsd:string ;
+#     dc:issued "2022-11-04T12:00:00"^^xsd:dateTime ;
+#     odrl:profile <UI:Profile_UID_here> ;
+#     odrl:uid <MünzkabinettAgreement> ;
+#     odrl:hasPolicy drk:MünzkabinettAgreement .
+
+# # Permission for accessing ArchiveEvent
+# drk:AccessPermission a odrl:Permission ;
+#     odrl:action odrl:view ;
+#     odrl:target drk:ArchiveEventAsset ;
+#     odrl:assigner drk:MuseumParty .
+
+# # Prohibition for unauthorized access
+# drk:UnauthorizedAccessProhibition a odrl:Prohibition ;
+#     odrl:action odrl:download ;
+#     odrl:target drk:ArchiveEventAsset ;
+#     odrl:assigner drk:MuseumParty .
+
+# # Party definitions
+# drk:UserParty a odrl:Party, foaf:Person ;
+#     odrl:uid <UI:UserParty> ;
+#     dc:description "Description of the UserParty."^^xsd:string .
+
+# drk:MuseumParty a odrl:Party, foaf:Organization ;
+#     odrl:uid <UI:MuseumParty> ;
+#     dc:description "Description of the MuseumParty."^^xsd:string .
+
+# # Asset definitions
+# drk:ArchiveEventAsset a odrl:Asset ;
+#     odrl:uid <UI:ArchiveEventAsset> ;
+#     dc:description "AssetDescription"^^xsd:string ;
+#     odrl:version "1.0"^^xsd:string ;
+#     odrl:partOf drk:DigitalRepository .
+
+# drk:DigitalRepository a odrl:AssetCollection ;
+#     odrl:partOf drk:MuseumParty .
+
+# # Constraint definitions
+# drk:AccessConstraint a odrl:Constraint ;
+#     odrl:leftOperand odrl:timeInterval ;
+#     odrl:operator odrl:lteq ;
+#     odrl:rightOperand "3 days"^^xsd:duration ;
+#     odrl:unit dbpedia:Hours ;
+#     odrl:uid <UI:AccessConstraint> ;
+#     odrl:dataType xsd:duration.
+
+# # Offer with constraints
+# drk:AccessOffer a odrl:Offer, odrl:Policy ;
+#     odrl:hasPolicy drk:AccessOffer ;
+#     odrl:profile <UI:Profile_UID_here> ;
+#     dc:creator "Münzkabinett museum"^^xsd:string ;
+#     dc:description "Provides access to ArchiveEvent with constraints"^^xsd:string ;
+#     dc:title "Access Offer with Constraints"^^xsd:string ;
+#     odrl:permission [
+#         a odrl:Permission ;
+#         odrl:action odrl:view ;
+#         odrl:target drk:ArchiveEventAsset ;
+#         odrl:assigner drk:MuseumParty ;
+#         odrl:constraint drk:AccessConstraint
+#     ].
+# ```

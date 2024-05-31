@@ -1,0 +1,37 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+drk:VorlagenzeichnerOffer a odrl:Offer, odrl:Policy ;
+    odrl:profile <UI:Profile_Namehere>;
+    odrl:uid <UI:VorlagenzeichnerOffer>;
+    dc:title "Vorlagenzeichner Offer Title"^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:access ;
+        odrl:target drk:Vorlagenzeichner ;
+        odrl:assigner drk:Kupferstich-Kabinett ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:device ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "loggingServer"^^xsd:string ;
+            odrl:datatype xsd:string ;
+        ]
+    ] ;
+    odrl:policy "UI:VorlagenzeichnerOffer" .
+
+drk:Kupferstich-Kabinett a odrl:Party, foaf:Organization ;
+    odrl:uid <UI:Kupferstich-Kabinett> ;
+    dc:description "Description of the Kupferstich-Kabinett."^^xsd:string .
+
+drk:Vorlagenzeichner a odrl:Asset ;
+    odrl:uid <UI:Vorlagenzeichner> ;
+    odrl:version "1"^^xsd:string .
+
+# Additional metadata and constraints can be added as needed
+
+# This is a simplified example of an ODRL policy for granting access to the 'Vorlagenzeichner' artwork for a one-month duration with restrictions on the type of device that can be used to access it. Adjustments and further details can be included based on specific requirements.

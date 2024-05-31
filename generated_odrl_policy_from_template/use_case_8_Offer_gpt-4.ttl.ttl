@@ -1,0 +1,51 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+# Define the Offer for the Kupferstich-Kabinett museum
+drk:KupferstichKabinettOffer a odrl:Offer, odrl:Policy ;
+    odrl:profile <UI:Profile_UID_here>;
+    odrl:uid <UI:KupferstichKabinettOffer>;
+    dc:title "Kupferstich-Kabinett Museum Artwork Access Policy"^^xsd:string ;
+    dc:creator "Kupferstich-Kabinett Museum"^^xsd:string ;
+    dc:description "This policy regulates the access to digital images of artworks provided by the Kupferstich-Kabinett Museum."^^xsd:string ;
+    odrl:hasPolicy drk:KupferstichKabinettOffer ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:display ;
+        odrl:target drk:ArtworkImages ;
+        odrl:assigner drk:KupferstichKabinettMuseum ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:resolution ;
+            odrl:operator odrl:lteq ;
+            odrl:rightOperand "300"^^xsd:integer ;
+            odrl:unit dbpedia:Dots_per_inch ;
+            odrl:dataType xsd:integer
+        ]
+    ] ;
+    odrl:duty [
+        a odrl:Duty ;
+        odrl:action odrl:pay ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:resolution ;
+            odrl:operator odrl:gt ;
+            odrl:rightOperand "300"^^xsd:integer ;
+            odrl:unit dbpedia:Dots_per_inch ;
+            odrl:dataType xsd:integer
+        ]
+    ] .
+
+# Define the Asset
+drk:ArtworkImages a odrl:Asset ;
+    odrl:uid <UI:ArtworkImages> .
+
+# Define the Assigner
+drk:KupferstichKabinettMuseum a odrl:Party, foaf:Organization ;
+    odrl:uid <UI:KupferstichKabinettMuseum> ;
+    dc:description "Kupferstich-Kabinett Museum"^^xsd:string .

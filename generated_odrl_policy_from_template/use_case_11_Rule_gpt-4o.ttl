@@ -1,0 +1,48 @@
+# Here is a comprehensive ODRL Rule in TTL format based on the given guidelines for the M�nzkabinett's policy:
+
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk> .
+
+# Define the Rule
+drk:DRK_0000001 a odrl:Set ;
+    odrl:uid "urn:uuid:DRK_0000001"^^xsd:anyURI ;
+    dc:description "The M�nzkabinett does not charge fees for the provision of data when the purpose is the enhancement of reputation or marketing promotion."^^xsd:string ;
+    dc:title "No Fees for Data Provision for Reputation or Marketing Promotion"^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:use ;
+        odrl:target :AssetTemplate ; # Use this as a placeholder for the actual target asset
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:uid "urn:uuid:purposeConstraint"^^xsd:anyURI ;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:isA ;
+            odrl:rightOperand [
+                a odrl:RightOperand ;
+                odrl:rightOperandReference <http://example.org/EnhancementOfReputation> ; # Placeholder for actual URI
+            ] ;
+            odrl:rightOperand [
+                a odrl:RightOperand ;
+                odrl:rightOperandReference <http://example.org/MarketingPromotion> ; # Placeholder for actual URI
+            ] ;
+        ]
+    ] .
+
+# Placeholder for Asset
+drk:AssetTemplate a odrl:Asset .
+
+# Placeholder for Parties if needed
+drk:PartyTemplate a odrl:Party .
+# ```
+
+# Explanation:
+# 1. **Prefixes**: Standard ODRL, Dublin Core terms, XML Schema, and the custom prefix `drk`.
+# 2. **Rule Definition**: A Set instance with a unique identifier (`odrl:uid`), description (`dcterms:description`), and title (`dct:title`).
+# 3. **Permission**: The Permission instance allows the action `odrl:use` on a target asset.
+# 4. **Target**: Placeholder for the actual asset (`:AssetTemplate`).
+# 5. **Constraint**: Ensures the action is only allowed for purposes related to the enhancement of reputation or marketing promotion using `odrl:purpose`, `odrl:isA` operator, and right operand references to placeholders for the specific purposes.
+
+# Feel free to replace placeholders (`:AssetTemplate`, `:PartyTemplate`, `<http://example.org/EnhancementOfReputation>`, and `<http://example.org/MarketingPromotion>`) with actual URIs as required.

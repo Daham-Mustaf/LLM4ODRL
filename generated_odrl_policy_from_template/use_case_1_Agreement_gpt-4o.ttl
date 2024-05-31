@@ -1,0 +1,77 @@
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+# Define the Agreement Policy
+drk:ShowTimesAPI_Access_Agreement a odrl:Agreement, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/ShowTimesAPI_Access_Agreement> ;
+    dc:creator "DE_Staatstheater_Augsburg"^^xsd:string ;
+    dc:description "Agreement for access to the ShowTimesAPI, a dataAPI managed by DE_Staatstheater_Augsburg containing valuable cultural assets. Access is restricted to Germany and usage rights expire on May 10, 2025."^^xsd:string ;
+    dc:title "ShowTimesAPI Access Agreement"^^xsd:string ;
+    odrl:assigner [ a odrl:Party, vcard:Organization ;
+                     odrl:uid <http://w3id.org/drk/DE_Staatstheater_Augsburg> ;
+                     dc:description "DE_Staatstheater_Augsburg, a German cultural organization"^^xsd:string
+                   ] ;
+    odrl:assignee [ a odrl:Party, vcard:Organization ;
+                     odrl:uid <http://w3id.org/drk/Regional_Newspaper> ;
+                     dc:description "Regional Newspaper"^^xsd:string
+                   ],
+                   [ a odrl:Party, vcard:Organization ;
+                     odrl:uid <http://w3id.org/drk/Culture_Research_Institute> ;
+                     dc:description "Culture Research Institute"^^xsd:string
+                   ],
+                   [ a odrl:Party, vcard:Organization ;
+                     odrl:uid <http://w3id.org/drk/Cultural_Platform_Bavaria> ;
+                     dc:description "Cultural Platform Bavaria"^^xsd:string
+                   ] ;
+    odrl:permission [ a odrl:Permission ;
+                      odrl:target [ a odrl:Asset ;
+                                    odrl:uid <http://w3id.org/drk/ShowTimesAPI> ;
+                                    dc:description "ShowTimesAPI, a dataAPI holding cultural assets"^^xsd:string
+                                  ] ;
+                      odrl:action [ a odrl:Action ;
+                                    odrl:refinement [ a odrl:Constraint ;
+                                                      odrl:leftOperand odrl:spatial ;
+                                                      odrl:operator odrl:eq ;
+                                                      odrl:rightOperand "Germany"^^xsd:string
+                                                    ] ;
+                                    odrl:refinement [ a odrl:Constraint ;
+                                                      odrl:leftOperand odrl:dateTime ;
+                                                      odrl:operator odrl:lt ;
+                                                      odrl:rightOperand "2025-05-10T23:59:59Z"^^xsd:dateTime
+                                                    ]
+                                  ]
+                    ] .
+
+# Defining the Parties
+<http://w3id.org/drk/DE_Staatstheater_Augsburg> a odrl:Party, vcard:Organization ;
+    dc:description "DE_Staatstheater_Augsburg, a German cultural organization"^^xsd:string .
+
+<http://w3id.org/drk/Regional_Newspaper> a odrl:Party, vcard:Organization ;
+    dc:description "Regional Newspaper"^^xsd:string .
+
+<http://w3id.org/drk/Culture_Research_Institute> a odrl:Party, vcard:Organization ;
+    dc:description "Culture Research Institute"^^xsd:string .
+
+<http://w3id.org/drk/Cultural_Platform_Bavaria> a odrl:Party, vcard:Organization ;
+    dc:description "Cultural Platform Bavaria"^^xsd:string .
+
+# Defining the Asset
+<http://w3id.org/drk/ShowTimesAPI> a odrl:Asset ;
+    dc:description "ShowTimesAPI, a dataAPI holding cultural assets"^^xsd:string .
+
+# Defining Constraints
+<http://w3id.org/drk/Constraint_Spatial_Germany> a odrl:Constraint ;
+    odrl:leftOperand odrl:spatial ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand "Germany"^^xsd:string .
+
+<http://w3id.org/drk/Constraint_Date_2025_05_10> a odrl:Constraint ;
+    odrl:leftOperand odrl:dateTime ;
+    odrl:operator odrl:lt ;
+    odrl:rightOperand "2025-05-10T23:59:59Z"^^xsd:dateTime .
+# ```
+# This Turtle (TTL) file defines an ODRL policy for the DE_Staatstheater_Augsburg's ShowTimesAPI, specifying access permissions, constraints based on geographic location, and expiration date.

@@ -1,0 +1,35 @@
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.com/> .
+
+ex:Policy1 a odrl:Policy ;
+    odrl:permission ex:Permission1 ;
+    odrl:asset ex:Vorlagenzeichner .
+
+ex:Vorlagenzeichner a odrl:Asset ;
+    odrl:uid "Kupferstich-Kabinett_Vorlagenzeichner"^^xsd:string .
+
+ex:Permission1 a odrl:Permission ;
+    odrl:target ex:Vorlagenzeichner ;
+    odrl:action odrl:use ;
+    odrl:constraint ex:Constraint1, ex:Constraint2 .
+
+ex:Constraint1 a odrl:Constraint ;
+    odrl:leftOperand odrl:dateTime ;
+    odrl:rightOperand "2022-12-31T23:59:59Z"^^xsd:dateTime ;
+    odrl:operator odrl:lteq .
+
+ex:Constraint2 a odrl:Constraint ;
+    odrl:leftOperand odrl:device ;
+    odrl:rightOperand "loggingServer"^^xsd:string ;
+    odrl:operator odrl:eq .
+# ```
+# In this policy, the `ex:Policy1` allows the 'Vorlagenzeichner' artwork (represented as `ex:Vorlagenzeichner`) to be used. This permission is subject to two constraints: 
+
+# 1. The `ex:Constraint1` limits the use of the artwork until a specific date and time (here represented as "2022-12-31T23:59:59Z").
+# 2. The `ex:Constraint2` specifies that the artwork can only be accessed using a specific type of device (here represented as "loggingServer").
+
+# Please replace the 'uid' of the asset, the 'rightOperand' of the `ex:Constraint1` and `ex:Constraint2` with your actual data.
+
+# Note: This policy assumes the use of ODRL version 2.2, which is the latest version at the time of writing.

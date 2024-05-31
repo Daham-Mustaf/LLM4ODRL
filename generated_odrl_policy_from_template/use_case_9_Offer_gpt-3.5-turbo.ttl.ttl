@@ -1,0 +1,56 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk> .
+
+# Define the ODRL Offer Policy
+drk:PrintIntendedOfferName a odrl:Offer, odrl:Policy ;
+   # Metadata using Dublin Core terms
+   dc:creator "Daham Musta"^^xsd:string ;
+   dc:description "Print the Offer description here"^^xsd:string ;
+   dc:title "Print Your Offer Title"^^xsd:string ;
+   odrl:profile <UI:Profile_UID_here> ;
+   odrl:hasPolicy drk:PrintIntendedOfferName .
+
+# An Offer MUST have at least one 'odrl:permission', 'odrl:prohibition',
+# or 'odrl:obligation' property values of type the Permission, Prohibition, and Obligation.
+# An Offer MUST have one 'odrl:assigner' property value of type Party.
+
+drk:offer123 a odrl:Set, odrl:Policy ;
+    odrl:uid "UI:offer123" ;
+    dc:creator "Daham Musta"^^xsd:string ;
+    dc:description "Summary Of given offer Description"^^xsd:string ;
+    dc:title "Print Your Offer Title"^^xsd:string ;
+    odrl:profile "UI:Profile_UID_here" ;
+    odrl:hasPolicy drk:offer123 .
+
+drk:offer456 a odrl:Offer, odrl:Policy ;
+    odrl:profile <UI:Profile_UID_here> ;
+    odrl:uid <UI:offer456> ;
+    dc:creator "Daham Musta"^^xsd:string ;
+    dc:description "Summary Of given offer456 Description"^^xsd:string ;
+    dc:title "Your Offer Title"^^xsd:string ;
+    odrl:hasPolicy drk:offer456 .
+
+# An Offer MAY have none, one, or many profile property values of type IRI to denote the
+# ODRL Profile(s) that this Policy adheres to. Each profile property should be expressed as
+# odrl:profile <UI:Profile_UID_here> to uniquely identify the ODRL Profile associated with this Offer.
+
+# Action - is an operation on an Asset please use Guidelines for Using the ODRL action
+# property:
+
+# An example for generating Offers:
+drk:offer1 a odrl:Offer, odrl:Policy ;
+    odrl:uid <UI:offer1> ;
+    dc:creator "Daham Musta"^^xsd:string ;
+    dc:description "Summary Of given offer Description"^^xsd:string ;
+    dc:title "Print Your Offer Title"^^xsd:string ;
+    odrl:hasPolicy drk:offer1 ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:distribute ;
+        odrl:target Generate an Asset of Type Asset ;
+        odrl:assignee Generate Party of type Party ;
+        ... other properties
+    ] .
+```

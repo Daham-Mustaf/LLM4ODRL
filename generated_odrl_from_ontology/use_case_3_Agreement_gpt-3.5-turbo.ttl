@@ -1,0 +1,29 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.com/policies/DE_Staatstheater_Augsburg_ODRL_policy> a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://example.com/assets/HistoricalArchives> ;
+        odrl:action odrl:read ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:target <http://example.com/assets/HistoricalArchives> ;
+            odrl:rule [
+                a odrl:Rule ;
+                odrl:permission odrl:free
+            ]
+        ]
+    ] ;
+    odrl:profile "http://www.w3.org/ns/odrl/2/profiles/#education" ;
+    dct:title "DE_Staatstheater_Augsburg ODRL Policy" ;
+    dct:description "Policy for granting free access to the HistoricalArchives Asset for educational purposes with the local university." .
+
+<http://example.com/assets/HistoricalArchives> a odrl:Asset ;
+    dct:title "HistoricalArchives" ;
+    dct:description "Digitized historical data containing information on theater history and cultural heritage." .
+
+<http://www.w3.org/ns/odrl/2/profiles/#education> a odrl:Profile ;
+    dct:title "Education Profile" ;
+    dct:description "Profile for educational purposes, enabling free access to digital assets for research and learning." .

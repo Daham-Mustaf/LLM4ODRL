@@ -1,0 +1,32 @@
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://example.com/policy/ShowTimesAPI_policy> a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://example.com/dataAPI/ShowTimesAPI> ;
+        odrl:action odrl:read ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:spatial <http://sws.geonames.org/2921044/> ; # Germany
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:dateTime "2025-05-10T00:00:00Z"^^xsd:dateTime ; # Usage rights expire on May 10, 2025
+        ]
+    ] ;
+    odrl:assigner <http://example.com/DE_Staatstheater_Augsburg> ;
+    odrl:target <http://example.com/dataAPI/ShowTimesAPI> .
+
+<http://example.com/DE_Staatstheater_Augsburg> a odrl:Party ;
+    dc:title "DE_Staatstheater_Augsburg" .
+
+<http://example.com/dataAPI/ShowTimesAPI> a odrl:Asset ;
+    dc:title "ShowTimesAPI" .
+
+<http://sws.geonames.org/2921044/> a odrl:Asset ;
+    rdfs:label "Germany" .
+# ```

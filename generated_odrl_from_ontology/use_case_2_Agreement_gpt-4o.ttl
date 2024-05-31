@@ -1,0 +1,72 @@
+# Certainly! Below is a comprehensive ODRL (Open Digital Rights Language) policy in Turtle (ttl) format for the Skulpturensammlung museum's digital reproductions of the artwork 'Gro�e D�ne' by C. D. Friedrich:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix schema: <http://schema.org/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.com/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# Define the policy
+ex:Policy001 a odrl:Policy ;
+    odrl:profile <http://www.w3.org/ns/odrl/2/> ;
+    dc:title "Access to digital reproductions of 'Gro�e D�ne' by C. D. Friedrich" ;
+    dc:description "Policy for providing public access to digital reproductions of 'Gro�e D�ne' for sharing and non-commercial use" ;
+    dc:creator ex:Skulpturensammlung ;
+    dc:created "2023-10-10"^^xsd:date ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target ex:DigitalReproduction_GrosseDune ;
+        odrl:action [ 
+            a odrl:download 
+        ] , [ 
+            a odrl:share 
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand odrl:nonCommercial
+        ]
+    ] ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target ex:DigitalReproduction_GrosseDune ;
+        odrl:action [ 
+            a odrl:view 
+        ]
+    ] ;
+    odrl:assigner ex:Skulpturensammlung ;
+    odrl:assignee ex:Public , ex:M�nzkabinett .
+
+# Define the digital reproduction resource
+ex:DigitalReproduction_GrosseDune a schema:ImageObject ;
+    schema:name "Digital reproduction of 'Gro�e D�ne' by C. D. Friedrich" ;
+    schema:creator ex:Skulpturensammlung ;
+    schema:about ex:Artwork_GrosseDune ;
+    schema:contentUrl <http://example.com/digitalreproduction_grossedune.jpg> .
+
+# Define the artwork resource
+ex:Artwork_GrosseDune a schema:CreativeWork ;
+    schema:name "Gro�e D�ne" ;
+    schema:creator ex:CD_Friedrich ;
+    schema:provider ex:Skulpturensammlung .
+
+# Define the entities
+ex:Skulpturensammlung a schema:Organization ;
+    schema:name "Skulpturensammlung Museum" ;
+    schema:url <http://example.com/skulpturensammlung> .
+
+ex:M�nzkabinett a schema:Organization ;
+    schema:name "Museum M�nzkabinett" ;
+    schema:url <http://example.com/muenzkabinett> .
+
+ex:Public a schema:Audience ;
+    schema:name "General Public" .
+
+ex:CD_Friedrich a schema:Person ;
+    schema:name "C. D. Friedrich" ;
+    schema:birthDate "1774-09-05"^^xsd:date ;
+    schema:deathDate "1840-05-07"^^xsd:date .
+# ```
+
+# This Turtle (ttl) representation captures all the essential elements of the ODRL policy, including permissions for viewing and downloading, constraints for non-commercial use, and the relevant entities involved.

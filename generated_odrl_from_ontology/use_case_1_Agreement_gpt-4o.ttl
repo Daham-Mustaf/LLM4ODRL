@@ -1,0 +1,57 @@
+# Sure, here is a comprehensive ODRL policy for the DE_Staatstheater_Augsburg's 'ShowTimesAPI' in Turtle (TTL) format:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.com/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:policy001 a odrl:Policy ;
+    dc:title "Access Policy for ShowTimesAPI" ;
+    odrl:profile <http://www.w3.org/ns/odrl/2/> ;
+    odrl:permission [
+        odrl:target <http://example.com/ShowTimesAPI> ;
+        odrl:assignee [
+            odrl:uid ex:RegionalNewspaper ;
+        ] ;
+        odrl:assignee [
+            odrl:uid ex:CultureResearchInstitute ;
+        ] ;
+        odrl:assignee [
+            odrl:uid ex:CulturalPlatformBavaria ;
+        ] ;
+        odrl:constraint [
+            odrl:leftOperand odrl:spatial ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "Germany" ;
+        ] ;
+        odrl:constraint [
+            odrl:leftOperand odrl:dateTime ;
+            odrl:operator odrl:lt ;
+            odrl:rightOperand "2025-05-10T00:00:00Z"^^xsd:dateTime ;
+        ] ;
+    ] ;
+    odrl:prohibition [
+        odrl:target <http://example.com/ShowTimesAPI> ;
+        odrl:constraint [
+            odrl:leftOperand odrl:spatial ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand "Germany" ;
+        ] ;
+    ] .
+
+ex:RegionalNewspaper a odrl:Party ;
+    dc:title "Regional Newspaper" .
+
+ex:CultureResearchInstitute a odrl:Party ;
+    dc:title "Culture Research Institute" .
+
+ex:CulturalPlatformBavaria a odrl:Party ;
+    dc:title "Cultural Platform Bavaria" .
+
+<http://example.com/ShowTimesAPI> a odrl:Asset ;
+    dc:title "ShowTimesAPI" ;
+    dc:description "A dataAPI holding valuable cultural assets managed by DE_Staatstheater_Augsburg." .
+# ```
+
+# This TTL (Turtle) file defines an ODRL policy that manages access to the 'ShowTimesAPI' with constraints on spatial access (restricted to Germany) and temporal access (expires on May 10, 2025). The policy grants access to three specific subscribers: 'Regional Newspaper', 'Culture Research Institute', and 'Cultural Platform Bavaria'.

@@ -1,0 +1,50 @@
+# Here is a comprehensive ODRL policy for the Kupferstich-Kabinett museum based on the provided usage limitations:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.com/> .
+
+# Policy for the Kupferstich-Kabinett museum
+ex:KupferstichPolicy a odrl:Policy ;
+    dct:title "Kupferstich-Kabinett museum policy" ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:view ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:count ;
+            odrl:rightOperand 50 ;
+            odrl:operator odrl:lteq ;
+        ] ;
+    ] ;
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:action odrl:extract ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand ex:resolution ;
+            odrl:rightOperand 300 ;
+            odrl:operator odrl:gt ;
+        ] ;
+    ] ;
+    odrl:duty [
+        a odrl:Duty ;
+        odrl:action odrl:request ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand ex:resolution ;
+            odrl:rightOperand 300 ;
+            odrl:operator odrl:gt ;
+        ] ;
+    ] ;
+    odrl:duty [
+        a odrl:Duty ;
+        odrl:action ex:payAdditionalFee ;
+    ] .
+# ```
+
+# This policy represents the following:
+# - The policy allows users to view a maximum of 50 images per day. If a user tries to view more than 50 images, the operation will not be permitted.
+# - The policy prohibits downloading high-resolution images (greater than 300 dpi) directly. If a user tries to download such images, the operation will not be permitted.
+# - If a user wants to download high-resolution images, they have to make a special request and pay an additional fee.

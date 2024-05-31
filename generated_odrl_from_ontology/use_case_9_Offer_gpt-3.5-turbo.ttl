@@ -1,0 +1,36 @@
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+# @prefix dct: <http://purl.org/dc/terms/> .
+# @prefix ex: <http://example.org/> .
+
+# ex:KupferstichKabinettPolicy
+#     a odrl:Policy ;
+#     odrl:permission [
+#         odrl:target ex:KupferstichKabinettImages ;
+#         odrl:action odrl:view ;
+#         odrl:constraint [
+#             odrl:constraint odrl:count ;
+#             odrl:operator odrl:lt ;
+#             odrl:rightOperand "50" ;
+#             odrl:unit <http://qudt.org/vocab/unit#Item>
+#         ]
+#     ] ;
+#     odrl:permission [
+#         odrl:target ex:KupferstichKabinettImages ;
+#         odrl:action odrl:download ;
+#         odrl:constraint [
+#             odrl:constraint odrl:unit ;
+#             odrl:rightOperand "300" ;
+#             odrl:unit <http://qudt.org/vocab/unit#DotsPerInch>
+#         ] ;
+#         odrl:constraint [
+#             odrl:constraint odrl:pay ;
+#             odrl:assigner ex:KupferstichKabinett ;
+#             odrl:assignee ex:User ;
+#             odrl:amount "10" ;
+#             odrl:currency "USD"
+#         ]
+#     ] .
+
+# ex:KupferstichKabinettImages
+#     a odrl:Asset ;
+#     dct:title "Digital Images of Artwork Collection in Kupferstich-Kabinett Museum" .

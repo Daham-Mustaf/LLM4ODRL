@@ -1,0 +1,17 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix langchain: <http://langchain_community.graphs/> .
+
+<http://muenzkabinett-museum.org/odrl_policy> a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action <http://www.w3.org/ns/odrl/2/ArchiveEvent> ;
+        odrl:target <http://muenzkabinett-museum.org> ;
+    ] ;
+    odrl:profile "http://www.w3.org/ns/odrl/2/"^^xsd:anyURI ;
+    dct:title "M�nzkabinett Museum ODRL Policy" ;
+    dct:description "This policy allows permission for ArchiveEvent on M�nzkabinett Museum content" .
+

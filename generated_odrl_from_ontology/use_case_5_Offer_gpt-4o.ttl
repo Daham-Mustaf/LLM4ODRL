@@ -1,0 +1,55 @@
+# Certainly! Below is a comprehensive ODRL policy in Turtle (TTL) format for the 'Vorlagenzeichner' artwork, including the specified permissions and restrictions:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.com/ns#> .
+
+ex:policy12345 a odrl:Policy ;
+    odrl:profile <http://www.w3.org/ns/odrl/2/> ;
+    odrl:permission [
+        odrl:target ex:Vorlagenzeichner ;
+        odrl:action odrl:use ;
+        odrl:constraint [
+            odrl:leftOperand odrl:elapsedTime ;
+            odrl:operator odrl:lteq ;
+            odrl:rightOperand "P1M"^^<http://www.w3.org/2001/XMLSchema#duration>
+        ]
+    ] ;
+    odrl:prohibition [
+        odrl:target ex:Vorlagenzeichner ;
+        odrl:action odrl:use ;
+        odrl:constraint [
+            odrl:leftOperand ex:deviceType ;
+            odrl:operator odrl:isA ;
+            odrl:rightOperand ex:loggingServer
+        ]
+    ] ;
+    dct:source ex:Kupferstich-Kabinett ;
+    dct:created "2023-10-01"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dct:modified "2023-10-01"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dct:title "Policy for Vorlagenzeichner Artwork" ;
+    dct:description "This policy permits access to the 'Vorlagenzeichner' artwork for one month with restrictions on the type of device used to access it." .
+
+ex:Vorlagenzeichner a odrl:Asset ;
+    dct:title "Vorlagenzeichner" ;
+    dct:creator ex:Kupferstich-Kabinett ;
+    dct:created "2023-10-01"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dct:description "An artwork introduced by Kupferstich-Kabinett." .
+
+ex:loggingServer a odrl:Asset ;
+    dct:title "Logging Server" ;
+    dct:description "A type of device that is prohibited from accessing the asset." .
+
+ex:Kupferstich-Kabinett a odrl:Party ;
+    dct:title "Kupferstich-Kabinett" ;
+    dct:description "The creator and source of the Vorlagenzeichner artwork." .
+# ```
+
+# In this policy:
+# - The `ex:policy12345` node represents the policy itself.
+# - The `odrl:permission` block specifies the permission to use the artwork (`odrl:action odrl:use`) with the constraint that the usage duration is less than or equal to one month (`odrl:constraint` with `odrl:leftOperand odrl:elapsedTime` and `odrl:rightOperand "P1M"`).
+# - The `odrl:prohibition` block prohibits the use of the artwork on devices of type `loggingServer`.
+# - The `ex:Vorlagenzeichner` node represents the artwork asset.
+# - The `ex:loggingServer` node represents the type of device that is restricted.
+# - The `ex:Kupferstich-Kabinett` node represents the party that created and is the source of the artwork.

@@ -1,0 +1,42 @@
+# @prefix drk: <http://w3id.org/drk/> .
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+# @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# @prefix dc: <http://purl.org/dc/terms/> .
+
+# drk:LandschaftMitKahlemBaumVirtualPresentation a odrl:Offer, odrl:Policy ;
+#     odrl:profile <UI:Profile_Name_here> ;
+#     odrl:uid <LandschaftMitKahlemBaumVirtualPresentation> ;
+#     dc:title "Virtual Presentation of 'Landschaft mit kahlem Baum'"^^xsd:string ;
+#     odrl:permission [
+#         a odrl:Permission ;
+#         odrl:action odrl:distribute ;
+#         odrl:target [
+#             a odrl:Asset ;
+#             odrl:uid <Asset_LandschaftMitKahlemBaum> ;
+#             dc:description "Asset of Type Asset"^^xsd:string;
+#         ] ;
+#         odrl:assignee [
+#             a odrl:Party ;
+#             odrl:uid <Assigner_LandschaftMitKahlemBaum> ;
+#             dc:description "Party of type Party"^^xsd:string;
+#         ] ;
+#         # Additional properties can be added here
+#     ] ;
+#     odrl:constraint [
+#         a odrl:Constraint ;
+#         odrl:uid <Constraint_LandschaftMitKahlemBaum> ;
+#         odrl:leftOperand odrl:geographicLocation ;
+#         odrl:operator odrl:eq ;
+#         odrl:rightOperand "Germany"^^xsd:string ;
+#         # Additional constraints can be added here
+#     ] ;
+#     # Other properties can be included as needed
+# .
+
+# drk:Policy assigner a odrl:Party;
+#     odrl:uid <Assigner_LandschaftMitKahlemBaum>;
+#     dc:description "AsignerDescription"^^xsd:string;
+
+# drk:"Policy Asset" a odrl:Asset;
+#     odrl:uid <Asset_LandschaftMitKahlemBaum>;
+#     dc:description "Asset of Type Asset"^^xsd:string;

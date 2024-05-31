@@ -1,0 +1,28 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/policy/M�nzkabinett_ODRL_policy> a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:use ;
+        odrl:target <http://example.com/data/M�nzkabinett_data> ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:purpose <http://example.com/purpose/enhancement_of_reputation>
+        ]
+    ] ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:use ;
+        odrl:target <http://example.com/data/M�nzkabinett_data> ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:purpose <http://example.com/purpose/marketing_promotion>
+        ]
+    ] ;
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:action odrl:charge
+    ] .

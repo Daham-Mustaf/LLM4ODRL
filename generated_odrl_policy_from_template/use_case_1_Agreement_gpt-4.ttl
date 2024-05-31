@@ -1,0 +1,36 @@
+# Here is the ODRL policy for the DE_Staatstheater_Augsburg based on the provided classes and instructions:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk/>. 
+@prefix de: <http://w3id.org/drk/DE_Staatstheater_Augsburg>. 
+
+drk:ShowTimesAPI_Access a odrl:Agreement, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/ShowTimesAPI_Access> ;
+    dc:title "Access to ShowTimesAPI of DE_Staatstheater_Augsburg"^^xsd:string ;
+    dc:creator "DE_Staatstheater_Augsburg"^^xsd:string ;
+    dc:description "This policy grants access to the 'ShowTimesAPI' of DE_Staatstheater_Augsburg till May 10, 2025."^^xsd:string ;
+    odrl:hasPolicy drk:ShowTimesAPI_Access ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target de:ShowTimesAPI ;
+        odrl:assigner de:DE_Staatstheater_Augsburg ;
+        odrl:assignee de:Regional_Newspaper, de:Culture_Research_Institute, de:Cultural_Platform_Bavaria ;
+        odrl:action odrl:read ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "Germany"^^xsd:string ;
+            odrl:leftOperand odrl:spatial
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:operator odrl:lt ;
+            odrl:rightOperand "2025-05-10T23:59:59Z"^^xsd:dateTime ;
+            odrl:leftOperand odrl:dateTime
+        ]
+    ] .
+# ```
+# This policy defines an agreement that grants 'read' access to the 'ShowTimesAPI' to 'Regional Newspaper', 'Culture Research Institute', and 'Cultural Platform Bavaria'. The access is permitted only within Germany and expires on May 10, 2025.

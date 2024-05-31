@@ -1,0 +1,69 @@
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+
+# Define the main Offer Policy
+drk:kupferstichKabinettOffer a odrl:Offer, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/kupferstichKabinettOffer> ;
+    dc:creator "Kupferstich-Kabinett Museum"^^xsd:string ;
+    dc:description "Offer for viewing and downloading digital images from the Kupferstich-Kabinett museum collection."^^xsd:string ;
+    dc:title "Kupferstich-Kabinett Digital Image Usage Offer"^^xsd:string ;
+    odrl:profile <http://w3id.org/drk/kupferstichKabinettProfile> ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:display ;
+        odrl:target drk:artworkCollection ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:count ;
+            odrl:operator odrl:lteq ;
+            odrl:rightOperand "50"^^xsd:integer ;
+            dc:title "Daily viewing limit"^^xsd:string
+        ]
+    ] ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:download ;
+        odrl:target drk:artworkCollection ;
+        odrl:refinement [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:resolution ;
+            odrl:operator odrl:gt ;
+            odrl:rightOperand "300"^^xsd:integer ;
+            dc:title "High-resolution download restriction"^^xsd:string
+        ] ;
+        odrl:duty [
+            a odrl:Duty ;
+            odrl:action odrl:obtainConsent ;
+            odrl:target <http://w3id.org/drk/highResDownloadRequest> ;
+            dc:title "Special request and additional fee for high-resolution downloads"^^xsd:string
+        ]
+    ] ;
+    odrl:assigner drk:kupferstichKabinett .
+
+# Define the Assigner Party
+drk:kupferstichKabinett a odrl:Party, foaf:Organization ;
+    odrl:uid <http://w3id.org/drk/kupferstichKabinett> ;
+    dc:description "Kupferstich-Kabinett Museum"^^xsd:string .
+
+# Define the Artwork Collection Asset
+drk:artworkCollection a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/artworkCollection> ;
+    dc:title "Digital Images of Artwork Collection"^^xsd:string ;
+    odrl:partOf drk:KupferstichKabinettCollection .
+
+# Define the Asset Collection
+drk:KupferstichKabinettCollection a odrl:AssetCollection ;
+    odrl:uid <http://w3id.org/drk/KupferstichKabinettCollection> ;
+    dc:title "Kupferstich-Kabinett Artwork Collection"^^xsd:string .
+
+# Define the Request Asset for High-Resolution Downloads
+<http://w3id.org/drk/highResDownloadRequest> a odrl:Asset ;
+    dc:title "High-Resolution Download Request"^^xsd:string .
+# ```
+
+# This Turtle (TTL) file defines an ODRL Policy for the Kupferstich-Kabinett museum, which includes permissions for viewing and downloading digital images with specific constraints and duties. The policy is well-structured and adheres to the guidelines provided, ensuring accurate and consistent usage of ODRL classes and properties.

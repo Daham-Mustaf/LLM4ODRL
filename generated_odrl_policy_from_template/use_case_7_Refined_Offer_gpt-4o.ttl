@@ -1,0 +1,52 @@
+# Here's the updated ODRL policy in TTL format, considering all the validation rules provided:
+
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Define the Assigner Party representing the owner of the artwork
+drk:EventOrganizer a odrl:Party, foaf:Organization ;
+    odrl:uid <http://w3id.org/drk/EventOrganizer> ;
+    dc:description "The organization responsible for organizing the virtual presentation event."^^xsd:string .
+
+# Define the Asset representing the artwork
+drk:LandschaftMitKahlemBaum a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/LandschaftMitKahlemBaum> ;
+    dc:title "Landschaft mit kahlem Baum"^^xsd:string ;
+    dc:description "A digital representation of the artwork 'Landschaft mit kahlem Baum'."^^xsd:string .
+
+# Define the Policy for the virtual presentation
+drk:VirtualPresentationPolicy a odrl:Offer, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/VirtualPresentationPolicy> ;
+    odrl:profile <http://w3id.org/drk/Profile/VirtualPresentation> ;
+    dc:creator "Daham Musta"^^xsd:string ;
+    dc:title "Virtual Presentation of 'Landschaft mit kahlem Baum'"^^xsd:string ;
+    dc:description "Policy for the virtual presentation of 'Landschaft mit kahlem Baum' restricted to participants within Germany and prohibiting copying or distributing the content."^^xsd:string ;
+    dc:issued "2023-10-01T00:00:00Z"^^xsd:dateTime ;
+    odrl:assigner drk:EventOrganizer ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target drk:LandschaftMitKahlemBaum ;
+        odrl:action odrl:present ;
+    ] ;
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:target drk:LandschaftMitKahlemBaum ;
+        odrl:action odrl:reproduce, odrl:distribute ;
+        odrl:assigner drk:EventOrganizer ;
+    ] ;
+    odrl:constraint [
+        a odrl:Constraint ;
+        odrl:uid <http://w3id.org/drk/GeographicConstraint> ;
+        odrl:leftOperand odrl:spatial ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand "DE"^^xsd:string ;
+        odrl:dataType xsd:string ;
+        dc:title "Geographic Limitation to Germany"^^xsd:string ;
+    ] .
+# ```
+
+# This updated TTL file should now comply with all the specified validation rules.

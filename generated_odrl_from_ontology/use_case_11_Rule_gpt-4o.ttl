@@ -1,0 +1,69 @@
+# Certainly! Below is a comprehensive ODRL policy in Turtle (TTL) format, based on the given scenario where The Münzkabinett does not charge fees for the provision of data when the purpose is the enhancement of reputation or marketing promotion.
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+
+<http://example.com/policy/muenzkabinett> a odrl:Policy ;
+    dct:title "The Münzkabinett Data Provision Policy" ;
+    dct:description "Policy for the provision of data by The Münzkabinett for purposes of reputation enhancement or marketing promotion without charging fees" ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://example.com/data/muenzkabinett> ;
+        odrl:action odrl:use ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand dct:purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "Enhancement of reputation" ;
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand dct:purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "Marketing promotion" ;
+        ] ;
+        odrl:duty [
+            a odrl:Duty ;
+            odrl:action odrl:obtainConsent ;
+            odrl:target <http://example.com/party/muenzkabinett> ;
+        ] ;
+    ] ;
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:target <http://example.com/data/muenzkabinett> ;
+        odrl:action odrl:sell ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand dct:purpose ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand "Enhancement of reputation" ;
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand dct:purpose ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand "Marketing promotion" ;
+        ] ;
+    ] ;
+    odrl:assigner <http://example.com/party/muenzkabinett> ;
+    dct:created "2023-10-09"^^xsd:date .
+
+<http://example.com/data/muenzkabinett> a schema:Dataset ;
+    dct:title "The Münzkabinett Data" ;
+    dct:description "Data provided by The Münzkabinett" ;
+    dct:creator <http://example.com/party/muenzkabinett> ;
+    dct:issued "2023-10-09"^^xsd:date .
+
+<http://example.com/party/muenzkabinett> a schema:Organization ;
+    schema:name "The Münzkabinett" ;
+    schema:url <http://example.com/muenzkabinett> .
+# ```
+
+# In this policy:
+# - The `odrl:Policy` specifies the overall data provision policy.
+# - `odrl:permission` allows the use of the data for the enhancement of reputation or marketing promotion without charging fees.
+# - `odrl:prohibition` prevents the sale of the data for purposes other than reputation enhancement or marketing promotion.
+# - The `dct:title`, `dct:description`, and other `dct:` properties provide metadata about the policy and the data.
+# - The `schema:` properties define the organization and dataset details.

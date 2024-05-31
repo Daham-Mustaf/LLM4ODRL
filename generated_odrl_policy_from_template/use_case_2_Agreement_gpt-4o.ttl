@@ -1,0 +1,66 @@
+# Below is a comprehensive ODRL policy in Turtle (TTL) format for the Skulpturensammlung museum, allowing public access to digital reproductions of the artwork 'Große Düne' by C. D. Friedrich with certain permissions and constraints:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix drk: <http://w3id.org/drk/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+# Define the Agreement Policy
+drk:PublicAccessAgreement a odrl:Agreement, odrl:Policy ;
+    odrl:uid <http://w3id.org/drk/agreements/public-access-grosse-duene> ;
+    dc:creator "Skulpturensammlung Museum"^^xsd:string ;
+    dc:description "Agreement for public access to digital reproductions of the artwork 'Große Düne' by C. D. Friedrich."^^xsd:string ;
+    dc:title "Public Access to Große Düne"^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target drk:Asset_GrosseDune ;
+        odrl:action odrl:view, odrl:download ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "non-commercial"^^xsd:string ;
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "sharing"^^xsd:string ;
+        ] ;
+    ] ;
+    odrl:assigner drk:Skulpturensammlung ;
+    odrl:assignee [
+        a odrl:PartyCollection ;
+        odrl:source drk:Public ;
+    ] .
+
+# Define the Asset
+drk:Asset_GrosseDune a odrl:Asset ;
+    odrl:uid <http://w3id.org/drk/assets/grosse-duene> ;
+    dc:title "Große Düne by C. D. Friedrich"^^xsd:string ;
+    dc:description "Digital reproduction of the artwork 'Große Düne' by Caspar David Friedrich."^^xsd:string .
+
+# Define the Assigner
+drk:Skulpturensammlung a odrl:Party, vcard:Organization ;
+    odrl:uid <http://w3id.org/drk/parties/skulpturensammlung> ;
+    dc:description "Skulpturensammlung Museum, the assigner of this agreement."^^xsd:string .
+
+# Define the Public Assignee
+drk:Public a odrl:Party, foaf:Group ;
+    odrl:uid <http://w3id.org/drk/parties/public> ;
+    dc:description "General public, the assignee of this agreement."^^xsd:string .
+# ```
+
+# ### Explanation of the TTL:
+# 1. **Agreement Definition**: The `drk:PublicAccessAgreement` is defined as an ODRL Agreement and Policy, including metadata using Dublin Core terms.
+# 2. **Permissions**: The agreement grants permissions for viewing and downloading (`odrl:view`, `odrl:download`) the digital reproductions.
+# 3. **Constraints**: The permissions are constrained by non-commercial and sharing purposes.
+# 4. **Asset Definition**: The `drk:Asset_GrosseDune` represents the digital reproduction of the artwork.
+# 5. **Parties**: 
+#     - The `drk:Skulpturensammlung` is defined as the assigner (the museum).
+#     - The `drk:Public` is defined as the assignee (the general public).
+
+# This policy adheres to the guidelines provided and ensures that all necessary elements are included and correctly formatted.

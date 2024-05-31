@@ -1,0 +1,67 @@
+# Certainly! Below is a comprehensive ODRL policy in Turtle (ttl) format for The Kupferstich-Kabinett museum based on the requirements provided:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.org/ns#> .
+
+# Policy for General Access to Images
+ex:Policy_GeneralAccess a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://kupferstich-kabinett.de/images/low_resolution> ;
+        odrl:action odrl:display ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand ex:resolution ;
+            odrl:operator odrl:lteq ;
+            odrl:rightOperand "300dpi"^^xsd:string
+        ]
+    ] ;
+    dct:title "General Access to Low Resolution Images" ;
+    dct:description "Images with a resolution of 300 dpi or lower are freely accessible to the public without any fees." .
+
+# Policy for High-Resolution Images for Print Purposes
+ex:Policy_PrintResolutionAccess a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://kupferstich-kabinett.de/images/high_resolution> ;
+        odrl:action odrl:display ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand ex:resolution ;
+            odrl:operator odrl:gt ;
+            odrl:rightOperand "300dpi"^^xsd:string
+        ] ;
+        odrl:duty [
+            a odrl:Duty ;
+            odrl:action odrl:pay ;
+            odrl:constraint [
+                a odrl:Constraint ;
+                odrl:leftOperand ex:resolution ;
+                odrl:operator odrl:gt ;
+                odrl:rightOperand "300dpi"^^xsd:string
+            ] ;
+            odrl:target <http://kupferstich-kabinett.de/payment> ;
+            odrl:amount "appropriate_fee"^^xsd:string
+        ]
+    ] ;
+    dct:title "Access to High-Resolution Images for Print Purposes" ;
+    dct:description "If the resolution of the digital image exceeds 300 dpi, a fee applies for access." .
+# ```
+
+# ### Explanation:
+# 1. **General Access Policy**:
+#     - **URI**: `ex:Policy_GeneralAccess`
+#     - **Permissions**: Allows displaying images with a resolution of 300 dpi or lower.
+#     - **Constraints**: The resolution must be less than or equal to 300 dpi.
+#     - **Description**: These images are freely accessible to the public.
+
+# 2. **High-Resolution Images for Print Purposes Policy**:
+#     - **URI**: `ex:Policy_PrintResolutionAccess`
+#     - **Permissions**: Allows displaying images with a resolution greater than 300 dpi.
+#     - **Duties**: A payment duty is imposed for accessing these images.
+#     - **Constraints**: The resolution must be greater than 300 dpi.
+#     - **Description**: A fee applies if the resolution exceeds 300 dpi.
+
+# In the above ttl format, replace the example URIs (`http://kupferstich-kabinett.de/images/low_resolution`, `http://kupferstich-kabinett.de/images/high_resolution`, and `http://kupferstich-kabinett.de/payment`) with the actual URIs used by The Kupferstich-Kabinett museum.

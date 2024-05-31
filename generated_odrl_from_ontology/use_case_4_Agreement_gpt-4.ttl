@@ -1,0 +1,43 @@
+# The following is an example of how you could represent this policy in TTL (Turtle) format:
+
+# ```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix ex: <http://example.com/>.
+
+ex:MunzkabinettPolicy a odrl:Policy;
+    odrl:permission [
+        a odrl:Permission;
+        odrl:target ex:ArchiveEvent;
+        odrl:action odrl:view, odrl:extract;
+        odrl:constraint [
+            a odrl:Constraint;
+            odrl:leftOperand odrl:uid;
+            odrl:operator odrl:eq;
+            odrl:rightOperand ex:RegisteredUser;
+        ];
+    ];
+    odrl:duty [
+        a odrl:Duty;
+        odrl:action odrl:register;
+        odrl:constraint [
+            a odrl:Constraint;
+            odrl:leftOperand odrl:uid;
+            odrl:operator odrl:eq;
+            odrl:rightOperand ex:ORCID, ex:Email;
+        ];
+    ].
+
+ex:ArchiveEvent a odrl:Asset.
+
+ex:RegisteredUser a odrl:Party.
+
+ex:ORCID a ex:Identifier.
+
+ex:Email a ex:Identifier.
+# ```
+
+# This policy specifies that the Münzkabinett museum has a policy (ex:MunzkabinettPolicy) that allows permission to view and extract the ArchiveEvent asset, but only for registered users (ex:RegisteredUser). This is represented by the constraint that the user ID (odrl:uid) must be equal to a registered user. 
+
+# Additionally, the policy specifies a duty to register with either an ORCID or an email address. This is represented by the constraint that the user ID must be equal to an ORCID or an email. 
+
+# Please note that the namespace prefixes (such as `ex:`) are placeholders and should be replaced with the actual URIs used in your RDF graph.

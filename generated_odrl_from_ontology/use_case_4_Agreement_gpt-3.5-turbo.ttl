@@ -1,0 +1,45 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://example.org/policy/1> a odrl:Policy ;
+    odrl:uid "policy1" ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://example.org/resource/ArchiveEvent> ;
+        odrl:action odrl:view ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:status odrl:authenticated ;
+            odrl:refinement [
+                a odrl:Refinement ;
+                odrl:party <http://example.org/resource/M�nzkabinett> ;
+                odrl:function odrl:validate ;
+                odrl:right odrl:read ;
+            ]
+        ]
+    ] ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target <http://example.org/resource/ArchiveEvent> ;
+        odrl:action odrl:download ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:status odrl:authenticated ;
+            odrl:refinement [
+                a odrl:Refinement ;
+                odrl:party <http://example.org/resource/M�nzkabinett> ;
+                odrl:function odrl:validate ;
+                odrl:right odrl:write ;
+            ]
+        ]
+    ] ;
+    odrl:profile "http://www.w3.org/ns/odrl/2/profile" ;
+    dct:title "M�nzkabinett Museum ODRL Policy" .
+
+<http://example.org/resource/M�nzkabinett> a odrl:Party ;
+    rdfs:label "M�nzkabinett" .
+
+<http://example.org/resource/ArchiveEvent> a odrl:Asset ;
+    rdfs:label "ArchiveEvent" .

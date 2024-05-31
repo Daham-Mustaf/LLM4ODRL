@@ -1,0 +1,53 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix drk: <http://w3id.org/drk> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+drk:VorlagenzeichnerOffer a odrl:Offer, odrl:Policy ;
+    dc:creator "Policy Owner"^^xsd:string;
+    dc:title "Vorlagenzeichner Offer Title"^^xsd:string;
+    dc:description "Agreement description"^^xsd:string;
+    dc:issued "2022-05-25T12:00:00"^^xsd:dateTime ;
+    odrl:profile <UI:Profile_Namehere>;
+    odrl:uid <UI:VorlagenzeichnerOffer>;
+    dc:title "Vorlagenzeichner Offer Title"^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:access ;
+        odrl:target drk:Vorlagenzeichner ;
+        odrl:assigner drk:Kupferstich-Kabinett ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:uid <UI:Constraint>;
+            odrl:leftOperand odrl:device ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "loggingServer"^^xsd:string ;
+            odrl:datatype xsd:string ;
+        ]
+    ] ;
+    odrl:policy "UI:VorlagenzeichnerOffer" .
+
+drk:Kupferstich-Kabinett a odrl:Party, foaf:Organization ;
+    odrl:uid <UI:Kupferstich-Kabinett> ;
+    dc:description "Description of the Kupferstich-Kabinett."^^xsd:string .
+
+drk:Vorlagenzeichner a odrl:Asset ;
+    odrl:uid <UI:Vorlagenzeichner> ;
+    odrl:version "1"^^xsd:string .
+
+drk:LoggingServer a odrl:Asset ;
+    odrl:uid <UI:LoggingServer> ;
+    dc:description "Logging Server used for accessing artwork."^^xsd:string .
+
+drk:Constraint a odrl:Constraint ;
+    odrl:uid <UI:Constraint> ;
+    odrl:leftOperand odrl:device ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand "loggingServer"^^xsd:string ;
+    odrl:datatype xsd:string .
+
+drk:PolicyOwner a odrl:Party ;
+    odrl:uid <UI:PolicyOwner> ;
+    dc:description "Owner of the policy."^^xsd:string .
+

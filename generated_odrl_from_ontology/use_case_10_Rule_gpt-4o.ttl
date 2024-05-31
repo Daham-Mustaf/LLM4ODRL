@@ -1,0 +1,47 @@
+# Certainly! Here's a comprehensive ODRL policy for The M�nzkabinett Museum's digitization of the 'Todestag' artwork, formatted in Turtle (TTL) syntax:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.com/ns#> .
+
+# Policy identifier
+ex:policy001 a odrl:Policy ;
+    dc:title "Digitization Fee Policy for 'Todestag' Artwork" ;
+    dc:description "Policy stipulating the fee for the digitization of the 'Todestag' artwork by The M�nzkabinett Museum" ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target ex:TodestagArtwork ;
+        odrl:action odrl:digitize ;
+        odrl:assignee ex:MuenzkabinettMuseum ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:payAmount ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "500"^^odrl:MonetaryAmount ;
+            odrl:unit "EUR"^^odrl:Unit ;
+        ] ;
+    ] ;
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:target ex:TodestagArtwork ;
+        odrl:action odrl:digitize ;
+        odrl:assignee ex:MuenzkabinettMuseum ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:payAmount ;
+            odrl:operator odrl:lt ;
+            odrl:rightOperand "500"^^odrl:MonetaryAmount ;
+            odrl:unit "EUR"^^odrl:Unit ;
+        ] ;
+    ] .
+
+# Entities definition
+ex:TodestagArtwork a dc:PhysicalObject ;
+    dc:title "Todestag" .
+
+ex:MuenzkabinettMuseum a dc:Agent ;
+    dc:title "The M�nzkabinett Museum" .
+# ```
+
+# This policy outlines the permission for The M�nzkabinett Museum to digitize the 'Todestag' artwork, provided they pay a fee of 500 euros. It includes a prohibition to ensure that digitization is not performed if the fee is less than 500 euros.

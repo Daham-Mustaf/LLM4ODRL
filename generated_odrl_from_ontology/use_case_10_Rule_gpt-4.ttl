@@ -1,0 +1,34 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.com/> .
+
+ex:Policy1
+    a odrl:Policy ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:target ex:TodestagArtwork ;
+        odrl:action odrl:digitize ;
+        odrl:duty [
+            a odrl:Duty ;
+            odrl:action odrl:pay ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "500"^^xsd:decimal ;
+            odrl:unit ex:Euro
+        ] ;
+    ] ;
+    odrl:assigner ex:MunzkabinettMuseum ;
+    dc:title "M�nzkabinett Museum Digitization Policy" ;
+    dc:description "The M�nzkabinett Museum must pay a fee of 500 euros for the digitization of the 'Todestag' artwork." .
+
+ex:TodestagArtwork
+    a dc:Artwork ;
+    dc:title "Todestag" .
+
+ex:MunzkabinettMuseum
+    a ex:Museum ;
+    dc:title "M�nzkabinett Museum" .
+
+ex:Euro
+    a odrl:Currency ;
+    dc:title "Euro" .

@@ -1,0 +1,39 @@
+# Based on the given ODRL Classes and Instructions, the ODRL rule for "The M�nzkabinett Museum must pay a fee of 500 euros for the digitization of the 'Todestag' artwork" can be written as follows:
+
+# ```ttl
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix drk: <http://w3id.org/drk>.
+@prefix mkm: <http://muenzkabinett.museum/>.
+
+drk:DRK_0000001 a odrl:Set ;
+    odrl:uid "urn:uuid:DRK_0000001"^^xsd:anyURI ;
+    dc:description "Fee payment for digitization of 'Todestag' artwork."^^xsd:string ;
+    dc:title "Digitization Fee Rule"^^xsd:string ;
+    odrl:duty [
+        a odrl:Duty ;
+        odrl:action odrl:pay ;
+        odrl:target mkm:Todestag ;
+        odrl:assigner mkm:MunzkabinettMuseum ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:payAmount ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "500"^^xsd:decimal ;
+            odrl:unit <http://publications.europa.eu/resource/authority/currency/EUR> ;
+            odrl:dataType xsd:decimal
+        ]
+    ].
+# ```
+
+# In the above rule:
+
+# - `drk:DRK_0000001` is a unique identifier for the rule.
+# - The `dc:description` provides a short description of the rule.
+# - The `dc:title` provides a title for the rule.
+# - The `odrl:duty` block defines a duty that must be fulfilled.
+# - The `odrl:action` is set to `odrl:pay`, indicating a payment must be made.
+# - The `odrl:target` is set to the 'Todestag' artwork, indicating this is the resource the rule applies to.
+# - The `odrl:assigner` is set to the M�nzkabinett Museum, indicating this is the party that must fulfill the duty.
+# - The `odrl:constraint` block defines a constraint on the duty. In this case, it specifies that the `odrl:payAmount` (the amount to be paid) must be equal (`odrl:eq`) to 500 euros.

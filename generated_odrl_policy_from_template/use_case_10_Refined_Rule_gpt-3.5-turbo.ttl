@@ -1,0 +1,46 @@
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+# @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+# @prefix drk: <http://w3id.org/drk/>.
+
+# drk:DRK_0000001 a odrl:Set ;
+#     odrl:uid "urn:uuid:DRK_0000001"^^xsd:anyURI ;
+#     odrl:profile "Policy description"^^xsd:string ;
+#     dcterms:description "rule description"^^xsd:string ;
+#     dct:title "rule title"^^xsd:string ;
+#     dc:creator "Policy Owner"^^xsd:string;
+#     dc:title "Agreement title"^^xsd:string;
+#     dc:description "Agreement description"^^xsd:string;
+#     dc:issued "Current DateTime"^^xsd:dateTime .
+    
+# drk:Policy assigner a odrl:Party;
+#     odrl:uid <urn:uuid:assigner> ;
+#     dc:description "Party issuing the policy"^^xsd:string .
+
+# drk:Policy Asset a odrl:Asset;
+#     odrl:uid <urn:uuid:asset> ;
+#     dc:description "The 'Todestag' artwork"^^xsd:string .
+
+# drk:PlaceholderForApplyingRuleOnAsset a odrl:Asset ;
+#     odrl:value "Todestag"^^xsd:string ;
+#     odrl:fee 500 .
+
+# :AssetTemplate a odrl:Asset ;
+#     odrl:value "Todestag"^^xsd:string .
+
+# odrl:permission [
+#     a odrl:Permission ;
+#     odrl:action odrl:use ;
+#     odrl:target :AssetTemplate ;
+#     odrl:assigner drk:Policy assigner ;
+#     odrl:constraint [
+#         a odrl:Constraint ;
+#         odrl:uid "urn:uuid:constraint"^^xsd:anyURI ;
+#         odrl:leftOperand odrl:purpose ;
+#         odrl:operator odrl:isA ;
+#         odrl:rightOperand drk:PlaceholderForApplyingRuleOnAsset ;
+#         odrl:dataType xsd:string
+#     ]
+# ] .
+
+# odrl:Action a odrl:Action ;
+#     odrl:value "use"^^xsd:string .

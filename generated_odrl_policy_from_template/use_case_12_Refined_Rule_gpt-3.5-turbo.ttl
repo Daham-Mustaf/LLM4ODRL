@@ -1,0 +1,35 @@
+# ```ttl
+
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix drk: <http://w3id.org/drk>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+drk:DRK_0000001 a odrl:Set ;
+    odrl:uid "urn:uuid: PrintRulenameHere "^^xsd:anyURI ;
+    dct:title " rule title "^^xsd:string ;
+    dct:description " short description of rule "^^xsd:string ;
+    dct:creator "Policy Owner"^^xsd:string ;
+    dct:title "Agreement title"^^xsd:string ;
+    dct:description "Agreement description"^^xsd:string ;
+    dct:issued "Current DateTime"^^xsd:dateTime ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:archive ;
+        odrl:target drk:AssetTemplate ;
+        odrl:assigner [
+            a odrl:Party ;
+            odrl:uid "urn:uuid:assigner"^^xsd:anyURI ;
+            dct:description "AssignerDescription"^^xsd:string ;
+        ] ;
+        odrl:constraint [
+            a odrl:Constraint ;
+            odrl:uid "urn:uuid:print constrinatName"^^xsd:anyURI ;
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:isA ;
+            odrl:rightOperand drk:PlaceholderForApplyingRuleOnAsset ;
+            odrl:dataType xsd:anyType ;
+        ] ;
+    ] .
+# ```  

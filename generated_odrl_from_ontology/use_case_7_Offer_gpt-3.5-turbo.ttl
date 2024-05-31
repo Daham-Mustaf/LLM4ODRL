@@ -1,0 +1,24 @@
+# @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+# <http://example.com/policy/Landschaft_mit_kahlem_Baum_policy> a odrl:Policy ;
+#     odrl:event <http://example.com/event/virtual> ;
+#     odrl:permission [
+#         a odrl:Permission ;
+#         odrl:target <http://example.com/resource/Landschaft_mit_kahlem_Baum> ;
+#         odrl:action <http://www.w3.org/ns/odrl/2/distribute> ;
+#         odrl:constraint [
+#             a odrl:Constraint ;
+#             odrl:spatial <http://example.com/geographic_limitation/Germany>
+#         ]
+#     ] ;
+#     odrl:prohibition [
+#         a odrl:Prohibition ;
+#         odrl:target <http://example.com/resource/Landschaft_mit_kahlem_Baum> ;
+#         odrl:action <http://www.w3.org/ns/odrl/2/copy>
+#     ] .
+
+# <http://example.com/event/virtual> a odrl:Event ;
+#     odrl:uid "virtual_event" .
+
+# <http://example.com/geographic_limitation/Germany> a odrl:Spatial ;
+#     odrl:scope "Germany" .

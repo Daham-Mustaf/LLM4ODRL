@@ -1,0 +1,27 @@
+@prefix drk: <http://w3id.org/drk/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+
+drk:LandschaftMitKahlemBaumVirtualPresentation a odrl:Offer, odrl:Policy ;
+    odrl:profile <UI:Profile_Name_here> ;
+    odrl:uid <UI:LandschaftMitKahlemBaumVirtualPresentation> ;
+    dc:title "Virtual Presentation of 'Landschaft mit kahlem Baum'"^^xsd:string ;
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:distribute ;
+        odrl:target "Asset of Type Asset" ;  
+        odrl:assignee "Party of type Party" ;
+        # Additional properties can be added here
+    ] ;
+    odrl:constraint [
+        a odrl:Constraint ;
+        odrl:leftOperand odrl:geographicLocation ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand "Germany"^^xsd:string ;
+        # Additional constraints can be added here
+    ] ;
+    # Other properties can be included as needed
+.
+
+# Additional classes and properties can be defined here as per the specific requirements.
