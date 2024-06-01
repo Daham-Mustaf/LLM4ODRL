@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Data preparation
-labels = ['Use_Case_1', 'Use_Case_2', 'Use_Case_3', 'Use_Case_4', 
-          'Use_Case_5', 'Use_Case_6', 'Use_Case 7', 'Use_Case 8', 'Use_Case 9', 
-          'Use_Case_10', 'Use_Case_11', 'Use_Case_12']
+labels = ['Use Case 1', 'Use Case 2', 'Use Case 3', 'Use Case 4', 
+          'Use Case 5', 'Use Case 6', 'Use Case 7', 'Use Case 8', 'Use Case 9', 
+          'Use Case 10', 'Use Case 11', 'Use Case 12']
 
 # Scores for each model
 gpt_3_5_scores = {
@@ -86,28 +86,28 @@ fig, ax = plt.subplots(figsize=(15, 8))
 ax.plot(labels, gpt_3_5_scores['Ontology-Guided'], marker='o', label='GPT-3.5-turbo Ontology-Guided')
 ax.plot(labels, gpt_3_5_scores['OSES Insights'], marker='o', label='GPT-3.5-turbo OSES Insights')
 ax.plot(labels, gpt_3_5_scores['Refinement'], marker='o', label='GPT-3.5-turbo Refinement')
-ax.plot(labels, gpt_3_5_scores['total scores'], marker='o', label='GPT-3.5-turbo Total Scores')
+# ax.plot(labels, gpt_3_5_scores['total scores'], marker='o', label='GPT-3.5-turbo Total Scores')
 
 # Plotting lines for GPT-4
 ax.plot(labels, gpt_4_scores['Ontology-Guided'], marker='s', label='GPT-4 Ontology-Guided')
 ax.plot(labels, gpt_4_scores['OSES Insights'], marker='s', label='GPT-4 OSES Insights')
 ax.plot(labels, gpt_4_scores['Refinement'], marker='s', label='GPT-4 Refinement')
-ax.plot(labels, gpt_4_scores['total scores'], marker='s', label='GPT-4 Total Scores')
+# ax.plot(labels, gpt_4_scores['total scores'], marker='s', label='GPT-4 Total Scores')
 
 # Plotting lines for GPT-4o
 ax.plot(labels, gpt_4o_scores['Ontology-Guided'], marker='^', label='GPT-4o Ontology-Guided')
 ax.plot(labels, gpt_4o_scores['OSES Insights'], marker='^', label='GPT-4o OSES Insights')
 ax.plot(labels, gpt_4o_scores['Refinement'], marker='^', label='GPT-4o Refinement')
-ax.plot(labels, gpt_4o_scores['total scores'], marker='^', label='GPT-4o Total Scores')
+# ax.plot(labels, gpt_4o_scores['total scores'], marker='^', label='GPT-4o Total Scores')
 
-ax.set_xlabel('Use Cases')
-ax.set_ylabel('Scores')
-ax.set_title('Scores by Use Cases and LLM Models')
+ax.set_xlabel('Use Cases', fontsize=16, fontweight='bold')
+ax.set_ylabel('Scores', fontsize=16, fontweight='bold')
+ax.set_title('Scores by Use Cases and LLM Models', fontsize=20, fontweight='bold')
 ax.set_xticks(range(len(labels)))
 ax.set_xticklabels(labels, rotation=45, ha="right")
 
 # Adjusting legend to be inside the plot without overlapping
-ax.legend(loc='best', fontsize='small')
+ax.legend(loc='best', fontsize='medium')
 
 fig.tight_layout()
 plt.savefig('score.svg', format='svg')
