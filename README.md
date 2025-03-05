@@ -86,6 +86,27 @@ Before running the scripts, ensure that you have set up an Open API key and conf
 
 The workflow represents a novel methodology for generating ODRL policies using LLMs, combining human expertise with machine processing. It consists of three main phases: Input (human-prepared), Processing (machine), and Refinement (human-guided correction), resulting in a refined ODRL Knowledge Graph.
 
-## License
+## Citation
+
+If you use this code in your research, please cite:
+
+```
+@inproceedings{mustafa2024instructions,
+  title={From Instructions to ODRL Usage Policies: An Ontology Guided Approach},
+  author={Mustafa, Daham M. and Nadgeri, Abhishek and Collarana, Diego and Arnold, Benedikt T. and Quix, Christoph and Lange, Christoph and Decker, Stefan},
+  booktitle={Proceedings of the LLM+KG Workshop at VLDB},
+  year={2024}
+}
+```
+
+## Authors
+
+- Daham M. Mustafa, Fraunhofer FIT, Sankt Augustin, Germany
+- Abhishek Nadgeri, Fraunhofer FIT, Sankt Augustin, Germany
+- Diego Collarana, Fraunhofer FIT, Sankt Augustin, Germany & Universidad Privada Boliviana, Cochabamba, Bolivia
+- Benedikt T. Arnold, Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
+- Christoph Quix, RWTH Aachen University, Aachen, Germany
+- Christoph Lange, Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
+- Stefan Decker, Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
 
 
