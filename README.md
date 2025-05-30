@@ -1,10 +1,10 @@
-# From Instructions to ODRL Usage Policies: An Ontology Guided Approach
-
-This project aims to convert instructions into ODRL (Open Digital Rights Language) usage policies using an ontology-guided approach. The approach leverages LLMs (Large Language Models) to generate accurate ODRL representations based on predefined criteria.
-
 ## Overview
 
 The repository contains the implementation of the method, experimental results, and related scripts.
+
+## Publication
+
+This work was published at the LLM+KG Workshop at VLDB 2024. The full paper is available at: https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf
 
 ## Directory Structure
 
@@ -88,16 +88,20 @@ The workflow represents a novel methodology for generating ODRL policies using L
 
 ## Citation
 
+This work was published at the LLM+KG Workshop at VLDB 2024.
+
+**Paper:** https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf
+
 If you use this code in your research, please cite:
 
-```
+```bibtex
 @inproceedings{mustafa2024instructions,
   title={From Instructions to ODRL Usage Policies: An Ontology Guided Approach},
   author={Mustafa, Daham M. and Nadgeri, Abhishek and Collarana, Diego and Arnold, Benedikt T. and Quix, Christoph and Lange, Christoph and Decker, Stefan},
   booktitle={Proceedings of the LLM+KG Workshop at VLDB},
-  year={2024}
+  year={2024},
+  url={https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf}
 }
-```
 
 ## Authors
 
