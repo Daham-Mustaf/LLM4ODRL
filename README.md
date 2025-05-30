@@ -1,9 +1,7 @@
-## Overview
-
-The repository contains the implementation of the method, experimental results, and related scripts.
-
+[![VLDB2024](https://img.shields.io/badge/VLDB2024-Published-green.svg)](https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 ## Publication
-
+The repository contains the implementation of the method, experimental results, and related scripts.
 This work was published at the LLM+KG Workshop at VLDB 2024. The full paper is available at: https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf
 
 ## Directory Structure
