@@ -6,8 +6,8 @@
 </p>
 
 [![Paper](https://img.shields.io/badge/Paper-VLDB2024-blue.svg)](https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf)
-[![ArXiv](https://img.shields.io/badge/arXiv-2502.06472-b31b1b.svg)](https://www.arxiv.org/abs/2506.03301)
 [![Fraunhofer-Publica](https://img.shields.io/badge/Fraunhofer--Publica-cac0343e-b31b1b.svg)](https://publica.fraunhofer.de/entities/publication/cac0343e-f6a1-4aca-ac9a-df295f9229d8)
+[![ArXiv](https://img.shields.io/badge/arXiv-2502.06472-b31b1b.svg)](https://www.arxiv.org/abs/2506.03301)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 
