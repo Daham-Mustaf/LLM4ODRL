@@ -97,11 +97,7 @@ The workflow represents a novel methodology for generating ODRL policies using L
 
 ## Citation
 
-This work was published at the LLM+KG Workshop at VLDB 2024.
-
-**Paper:** https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf
-
-If you use this code in your research, please cite:
+If you use this work in your research, please cite our paper:
 
 ```bibtex
 @inproceedings{mustafa2024instructions,
@@ -111,15 +107,17 @@ If you use this code in your research, please cite:
   year={2024},
   url={https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf}
 }
-
+```
 ## Authors
 
-- Daham M. Mustafa, Fraunhofer FIT, Sankt Augustin, Germany
-- Abhishek Nadgeri, Fraunhofer FIT, Sankt Augustin, Germany
-- Diego Collarana, Fraunhofer FIT, Sankt Augustin, Germany & Universidad Privada Boliviana, Cochabamba, Bolivia
-- Benedikt T. Arnold, Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
-- Christoph Quix, RWTH Aachen University, Aachen, Germany
-- Christoph Lange, Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
-- Stefan Decker, Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
+- **Daham M. Mustafa** - Fraunhofer FIT, Sankt Augustin, Germany
+- **Abhishek Nadgeri** - Fraunhofer FIT, Sankt Augustin, Germany  
+- **Diego Collarana** - Fraunhofer FIT, Sankt Augustin, Germany & Universidad Privada Boliviana, Cochabamba, Bolivia
+- **Benedikt T. Arnold** - Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
+- **Christoph Quix** - RWTH Aachen University, Aachen, Germany
+- **Christoph Lange** - Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
+- **Stefan Decker** - Fraunhofer FIT, Sankt Augustin, Germany & RWTH Aachen University, Aachen, Germany
 
+## Related Links
 
+- **Workshop**: [LLM+KG Workshop at VLDB 2024](https://seucoin.github.io/workshop/llmkg/)
