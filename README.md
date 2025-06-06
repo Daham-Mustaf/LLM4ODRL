@@ -1,3 +1,4 @@
+# From Instructions to ODRL Usage Policies: An Ontology Guided Approach  
 <p align="center">
   <a href="https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf">
     <img src="https://www.astaple.com/wp-content/uploads/2024/06/logo-2024-1140x600.png" alt="VLDB2024" width="200"/>
@@ -6,6 +7,8 @@
 
 [![Paper](https://img.shields.io/badge/Paper-VLDB2024-blue.svg)](https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![ArXiv](https://img.shields.io/badge/arXiv-2502.06472-b31b1b.svg)](https://www.arxiv.org/abs/2506.03301)
+
 ## Publication
 The repository contains the implementation of the method, experimental results, and related scripts.
 This work was published at the LLM+KG Workshop at VLDB 2024.
