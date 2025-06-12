@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite our paper."
+authors:
+  - family-names: Mustafa
+    given-names: Daham M.
+  - family-names: Nadgeri
+    given-names: Abhishek
+  - family-names: Collarana
+    given-names: Diego
+  - family-names: Arnold
+    given-names: Benedikt T.
+  - family-names: Quix
+    given-names: Christoph
+  - family-names: Lange
+    given-names: Christoph
+  - family-names: Decker
+    given-names: Stefan
+title: "From Instructions to ODRL Usage Policies: An Ontology Guided Approach"
+version: 1.0.0
+date-released: 2024-08-01
+doi: https://doi.org/10.48550/arXiv.2506.03301
+url: https://vldb.org/workshops/2024/proceedings/LLM+KG/LLM+KG-15.pdf
+conference: "Proceedings of the LLM+KG Workshop at VLDB"
+type: conference-paper
