@@ -10,6 +10,7 @@
 [![ArXiv](https://img.shields.io/badge/arXiv-2502.06472-b31b1b.svg)](https://www.arxiv.org/abs/2506.03301)
 [![LangChain](https://img.shields.io/badge/🦜🔗-LangChain-brightgreen.svg)](https://www.langchain.com/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15656004.svg)](https://doi.org/10.5281/zenodo.15656004)
 
 
 ## Publication
